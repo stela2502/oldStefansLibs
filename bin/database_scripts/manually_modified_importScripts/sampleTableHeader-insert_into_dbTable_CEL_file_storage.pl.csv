@@ -1,0 +1,27 @@
+ NEEDED values:
+ -external_files_file
+       the name of the file
+ -external_files_filetype
+       the filetype (one of picture, text_document or data_file)
+ -CEL_file_storage_array_type
+       a string that identifies the AffymetrixAffay design
+ LINKAGE variables:
+ -CEL_file_storage_cel_file_id
+       the id of the stored file
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -external_files_file
+          the name of the file
+    -external_files_filetype
+          the filetype (one of picture, text_document or data_file)
+ -CEL_file_storage_sample_id
+       the link to the sample information
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -sampleTable_sample_lable
+          the lable of the storage tubes
+    -sampleTable_subject_id
+          the link to the subjects table
+    -sampleTable_tissue_id
+          the link to the tissues table
+CEL_file_storage_cel_file_id;external_files_file;external_files_filetype;external_files_file;external_files_filetype;CEL_file_storage_sample_id;sampleTable_sample_lable;sampleTable_subject_id;sampleTable_tissue_id;CEL_file_storage_array_type;

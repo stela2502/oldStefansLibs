@@ -1,0 +1,23 @@
+ NEEDED values:
+ -hypothesis_table_hypothesis_name
+       a name for the hypothesis unique in the whole database
+ -external_files_file
+       the name of the file
+ -external_files_filetype
+       the filetype (one of picture, text_document or data_file
+ -hypothesis_table_description
+       a caption text for the graphic
+ -hypothesis_table_hypothesis
+       a summary of that hypothesis (MAKE IT STRONG)
+ -hypothesis_table_access_right
+       one of (scientis, group or all)
+ LINKAGE variables:
+ -hypothesis_table_picture_id
+       a link to a graphic that describes the hypothsis
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -external_files_file
+          the name of the file
+    -external_files_filetype
+          the filetype (one of picture, text_document or data_file
+hypothesis_table_hypothesis_name;hypothesis_table_picture_id;external_files_file;external_files_filetype;external_files_file;external_files_filetype;hypothesis_table_description;hypothesis_table_hypothesis;hypothesis_table_access_right;

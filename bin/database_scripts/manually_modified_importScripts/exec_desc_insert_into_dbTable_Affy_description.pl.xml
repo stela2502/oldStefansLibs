@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<data>
+<version>version 1</version>
+<author>Stefan Lang</author>
+<description>description of how to add to the Affy_description table</description>
+
+<!-- free = the application will update the system tables and then die,
+     locked = expects to get resultfiles to handle after the applicaion is done-->
+<applicationwill>free</applicationwill>
+
+<applicationtype>perl</applicationtype>
+<applicaionsettings></applicaionsettings>
+
+<arguments>
+  <item>*fullpath*</item>
+  <item>*jobid*</item>
+</arguments>
+
+<binpath>/usr/local/bin/</binpath>
+<bin>insert_into_dbTable_Affy_description.pl</bin>
+</data>

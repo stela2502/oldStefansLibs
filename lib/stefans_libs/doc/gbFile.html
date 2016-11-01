@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/gbFile.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">depends on</a></li>
+		<li><a href="#provides">provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#header">Header</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#addsequence">AddSequence</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#erasefeaturescontaingstring">EraseFeaturesContaingString</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#addfeature">AddFeature</a></li>
+		<li><a href="#addgbfile">AddGbfile</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#getsequence_forfeaturename">getSequence_ForFeatureName</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#features">Features</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#filename">Filename</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#name">Name</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#path">Path</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#writeasfasta">WriteAsFasta</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#get_subseq">Get_SubSeq</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#getpuresequencename">getPureSequenceName</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+			<li><a href="#writeasgb">WriteAsGB</a></li>
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+		<li><a href="#gbsequence">gbSequence</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#print">Print</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+		<li><a href="#length">Length</a></li>
+		<li><a href="#openfile">openFile</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::gbFile</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The class gbFile is used to handle genbank formated sequence files.</p>
+<p>
+</p>
+<h2><a name="depends_on">depends on</a></h2>
+<p><a href="/gbFile/gbFeature.html">the gbFile::gbFeature manpage</a>,</p>
+<p><a href="//fastaFile.html">the ::fastaFile manpage</a>,</p>
+<p><a href="/gbFile/gbHeader.html">the gbFile::gbHeader manpage</a></p>
+<p><a href="//root.html">the ::root manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">provides</a></h2>
+<p><a href="#openfile">openFile</a></p>
+<p><a href="#length">Length</a></p>
+<p><a href="#print">Print</a></p>
+<p><a href="#gbsequence">gbSequence</a></p>
+<p><a href="#writeasgb">WriteAsGB</a></p>
+<p><a href="#getpuresequencename">getPureSequenceName</a></p>
+<p><a href="#get_subseq">Get_SubSeq</a></p>
+<p><a href="#writeasfasta">WriteAsFasta</a></p>
+<p><a href="#path">Path</a></p>
+<p><a href="#name">Name</a></p>
+<p><a href="#filename">Filename</a></p>
+<p><a href="#features">Features</a></p>
+<p><a href="#getsequence_forfeaturename">getSequence_ForFeatureName</a></p>
+<p><a href="#addgbfile">AddGbfile</a></p>
+<p><a href="#addfeature">AddFeature</a></p>
+<p><a href="#erasefeaturescontaingstring">EraseFeaturesContaingString</a></p>
+<p><a href="#addsequence">AddSequence</a></p>
+<p><a href="#header">Header</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>new returns a new object reference of the class gbFile.</p>
+<p>If a valid path to a genbank formated sequence file is ommited as argument this sequence file is read 
+using the method <a href="#addgbfile">AddGbfile</a>.</p>
+<p>
+</p>
+<h2><a name="header">Header</a></h2>
+<p>Header is the wrapping class for the internal genbank formated header represented by a <a href="/gbFile/gbHeader.html">the gbFile::gbHeader manpage</a> object.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the info tag for this header entry as defined in the genbank format</p>
+<p>[1]: the information string stored by this header tag in the genebank header</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>if tag ans string are defined thist information is added to the gbHeader by its <a href="/gbFile/gbHeader.html#headerentry">HeaderEntry in the gbFile::gbHeader manpage</a> method.</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>The internal gbHeader object is returned.</p>
+<p>
+</p>
+<h2><a name="addsequence">AddSequence</a></h2>
+<p>AddSequence is used to add Sequence at the end of the genbank file.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: text formated sequence to add to the end of the internal genebank sequence</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>1 if the sequence was added, 0 if not.</p>
+<p>
+</p>
+<h2><a name="erasefeaturescontaingstring">EraseFeaturesContaingString</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the string that is part off all features that should be removed</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>The count of removed features.</p>
+<p>
+</p>
+<h2><a name="addfeature">AddFeature</a></h2>
+<p>depricated use <a href="#features">Features</a> instead</p>
+<p>
+</p>
+<h2><a name="addgbfile">AddGbfile</a></h2>
+<p>AddGbfile is used to read a genbank formated sequence file into a gbFile object.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: absolute location of a genbank formated sequence file</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>(1) Parse the genebank sequence file using the method <a href="#openfile">openFile</a>.</p>
+<p>(2) store sequence name and sequence path using <a href="#getpuresequencename">getPureSequenceName</a>.</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>[ the gbHeader,  the gbFeature array(ref),  the sequence as unformated txt , the length of the sequence ]</p>
+<p>
+</p>
+<h2><a name="getsequence_forfeaturename">getSequence_ForFeatureName</a></h2>
+<p>getSequence_ForFeatureName does pretty mutch what can be expected. It returns the sequence corresponding to a given feature name if such a feature exists.
+Otherwise it returns the undefined value.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the name-string or a name-substring of the wanted feature</p>
+<p>[1]: the amount of sequence to add on both sides of the feature in basepairs</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the text formated sequence containing the feature. Only the sequence corresponding to the first matching feature is returned!</p>
+<p>
+</p>
+<h2><a name="features">Features</a></h2>
+<p>The method Features is a wrapper arround the internal gbFeatures array.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: either a gbFeature or the reference to an array of gbFeatures or the undefined value</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>If a gbFeature or a array of gbFeatures given, these gbFeatures get added to the internal feature array.</p>
+<p>A reference to the internal feature array is returned.</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>The reference to the internal feature array is returned. Do not mess with it as it will also influence the internal features!</p>
+<p>
+</p>
+<h2><a name="filename">Filename</a></h2>
+<p>Filename is the warpper method of the internal filename representation.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the filename to acces the genbank formated sequence file or undefined</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>It returns the internal filename or the undefined value.</p>
+<p>
+</p>
+<h2><a name="name">Name</a></h2>
+<p>Name is the warpper method of the internal name representation (root-&gt;getPureSequenceName-&gt;{MySQL_entry}).</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the name to acces the genbank formated sequence MySQL entry or undefined</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>It returns the internal name (MySQL entry tag) or the undefined value.</p>
+<p>
+</p>
+<h2><a name="path">Path</a></h2>
+<p>Path is the warpper method of the internal path representation.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the path where the genbank formated sequence file is stored or undefined</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>It returns the internal path or the undefined value.</p>
+<p>
+</p>
+<h2><a name="writeasfasta">WriteAsFasta</a></h2>
+<p>WriteAsFasta wirtes the internal sequence representation in fasta format.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the absolute filename to write the sequence to.</p>
+<p>[1]: the accesion string of the written fasta file</p>
+<p>[2]: position in basepairs where the sequence should start</p>
+<p>[3]: position in basepairs where the sequence should end</p>
+<p>
+</p>
+<h2><a name="get_subseq">Get_SubSeq</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: position in basepairs where the substring of the seqiuence should start</p>
+<p>[1]: position in basepairs where the substring of the seqiuence should end</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>the substring of the sequence ore the whole sequence if start and end where not defined</p>
+<p>
+</p>
+<h2><a name="getpuresequencename">getPureSequenceName</a></h2>
+<p>getPureSequenceName is a wrapper around <em>root/``getPureSequenceName''</em>.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the filename to split up</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>$self-&gt;{name} = root-&gt;getPureSequenceName-&gt;{MySQL_entry} and $self-&gt;{path} = root-&gt;getPureSequenceName-&gt;{path}</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>$self-&gt;{name}, $self-&gt;{path}</p>
+<p>
+</p>
+<h3><a name="writeasgb">WriteAsGB</a></h3>
+<p>Write the sequence in genbank format.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the filename to write the file to</p>
+<p>[1]: the strt position in the sequence in basepair</p>
+<p>[2]: the end position in the sequence in basepair
+</p>
+<pre>
+
+=cut</pre>
+<p>sub WriteAsGB{</p>
+<pre>
+    my ( $self, $filename, $start, $end) = @_;</pre>
+<pre>
+    my ( $temp, $line);</pre>
+<pre>
+    my ( $seqName,$path) = $self-&gt;getPureSequenceName($file);
+    print &quot;filename = $file\nWriteAsFasta path = $path\n&quot;;</pre>
+<pre>
+    root-&gt;CreatePath(&quot;$path/modified&quot;);</pre>
+<pre>
+    $filename = &quot;$path/modified/$seqName.gb&quot;;</pre>
+<pre>
+    open (OUT, &quot;&gt;$filename&quot;) or die &quot;konnte file $filename nicht anlegen!\n&quot;;</pre>
+<pre>
+    print OUT $self-&gt;{header}-&gt;getAsGB();</pre>
+<pre>
+    $temp = $self-&gt;Features();
+    foreach my $feature (sort FeatureByStart @$temp){
+       if (defined $start &amp;&amp; defined $end){
+          print OUT $feature-&gt;getAsGB($start, $end) if ($feature-&gt;End &gt; $start &amp;&amp; $feature-&gt;Start &lt; $end);
+       }
+       else {
+          print OUT $feature-&gt;getAsGB(0, $self-&gt;{seq_length});
+       }
+    } 
+    
+    $temp = $self-&gt;gbSequence($start, $end);
+    print OUT &quot;ORIGIN\n&quot;;
+    foreach $line (@$temp) {
+      print OUT $line;
+    }
+    print &quot;genbank file written as $filename\n&quot;;
+    close OUT;</pre>
+<p>}</p>
+<p>sub FeatureByStart {
+#    print $a-&gt;Start(),`` &lt;=&gt; '',$b-&gt;Start(),``\n'';
+    return $a-&gt;<code>Start()</code> &lt;=&gt; $b-&gt;Start();
+}</p>
+<p>
+</p>
+<h2><a name="gbsequence">gbSequence</a></h2>
+<p>gbSequence formated the internal sequence sting to the genbank sequence format</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: position in basepairs where the sequence should start</p>
+<p>[1]: position in basepairs where the sequence should end</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>The reference to a sequence array containing the sequence line by line.</p>
+<p>
+</p>
+<h2><a name="print">Print</a></h2>
+<p>Print the gbHeader and the Features by there getAsGB methods.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="length">Length</a></h2>
+<p>Length is a wrapper around the internal sequence length.
+It can not handle sequences, only integers.</p>
+<p>
+</p>
+<h2><a name="openfile">openFile</a></h2>
+<p>openFile pareses the genbank formated sequence file into the internal sequence representation.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the absolute location of the sequence file</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>(1) if success</p>
+
+</body>
+
+</html>

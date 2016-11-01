@@ -1,0 +1,18 @@
+Motif 1: Wid 6; Score 5.193; Sites 4; Con TGGTTG; RCon CAACCA
+********************************
+        A      C      G      T       Con  rCon Deg  rDeg
+1      0.44   0.36  42.07  57.13      T    A    K    M
+2      0.44   0.36  98.75   0.44      G    C    G    C
+3      0.44   0.36  98.75   0.44      G    C    G    C
+4      0.44   0.36   0.36  98.84      T    A    T    A
+5      0.44   0.36   0.36  98.84      T    A    T    A
+6     15.95  30.30  30.30  23.44      C    G    S    S
+>calc_id_7_it_4_Chr3_id=4906_118469205..118469705H_POL2_mean=1.2013346  Len 500 Site #1 r 417
+TGGTTT
+>calc_id_7_it_4_Chr3_id=4906_118469205..118469705H_POL2_mean=1.2013346  Len 500 Site #2 r 368
+TGGTTT
+>calc_id_7_it_4_Chr3_id=4906_118469205..118469705H_POL2_mean=1.2013346  Len 500 Site #3 r 316
+TGGTTA
+>calc_id_7_it_4_Chr3_id=4906_118469205..118469705H_POL2_mean=1.2013346  Len 500 Site #4 r 268
+TGGTTT
+********************************

@@ -1,0 +1,17 @@
+ NEEDED values:
+ -subjectTable.identifier
+       an unique identifier for that individual
+ LINKAGE variables:
+ -subjectTable.organism_id
+       this value can be recieved using the variable organism together with the data_handler organism
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -organismDB.organism_tag
+          the organism tag as used by NCBI
+ -subjectTable.project_id
+       the link to the projects table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -project_table.name
+          the name of the project
+subjectTable.identifier;subjectTable.organism_id;organismDB.organism_tag;subjectTable.project_id;project_table.name;

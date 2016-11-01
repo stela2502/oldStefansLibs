@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/gbFile/gbRegion.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">depends on</a></li>
+		<li><a href="#provides">provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#getasgb">getAsGB</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+			<li><a href="#print">Print</a></li>
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#retrun_value">retrun value</a></li>
+		</ul>
+
+		<li><a href="#start">Start</a></li>
+		<li><a href="#end">End</a></li>
+		<li><a href="#changeregion_add">ChangeRegion_Add</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+		</ul>
+
+		<li><a href="#changeregion_diff">ChangeRegion_Diff</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#complement">Complement</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#getregionfordrawing">getRegionForDrawing</a></li>
+		<li><a href="#length">Length</a></li>
+		<li><a href="#getlengthfordrawing">getLengthForDrawing</a></li>
+		<li><a href="#parseregions">ParseRegions</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#itemize_old">Itemize_old</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::gbFile::gbRegion</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>A class to handle the genbank formated region information.</p>
+<p>
+</p>
+<h2><a name="depends_on">depends on</a></h2>
+<p>nothing</p>
+<p>
+</p>
+<h2><a name="provides">provides</a></h2>
+<p><a href="#getasgb">getAsGB</a></p>
+<p><a href="#print">Print</a></p>
+<p><a href="#start">Start</a></p>
+<p><a href="#end">End</a></p>
+<p><a href="#changeregion_add">ChangeRegion_Add</a></p>
+<p><a href="#changeregion_diff">ChangeRegion_Diff</a></p>
+<p><a href="#region">Region</a></p>
+<p><a href="#complement">Complement</a></p>
+<p><a href="#getregionfordrawing">getRegionForDrawing</a></p>
+<p><a href="#length">Length</a></p>
+<p><a href="#getlengthfordrawing">getLengthForDrawing</a></p>
+<p><a href="#parseregions">ParseRegions</a></p>
+<p><a href="#itemize_old">Itemize_old</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>new returns a new object reference of the class gbRegion</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: genbank regionstring in the format ``complement(join(3..5,7..9))''</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>The atribute[0] is given for parsing to <em>Region,``Region''</em>.</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>a new gbregion object.</p>
+<p>
+</p>
+<h2><a name="getasgb">getAsGB</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: region of interest start in basepairs</p>
+<p>[1]: region of interest end in basepairs</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>return the genbank formated region if the file would start at atribute[0] and end at atribute[1].
+If atribute[0] and atribute[1] are not defined atribute[0] is set to 0 and atribute[1] is set tp <a href="#end">End</a>.</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>A genbank formated region string.</p>
+<p>
+</p>
+<h3><a name="print">Print</a></h3>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: region of interest start in basepairs</p>
+<p>[1]: region of interest end in basepairs</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>This method parses all region items created by <a href="#itemize_old">Itemize_old</a>.
+If <a href="#complement">Complement</a> is defined the region becomes complement('region'),
+if there are more than 1 parsed region pieces the region becomes join('region').
+Each region item is used to create 'region'. From each start and end the value atribute[0] is removed to rescale the region if needed.</p>
+<p>
+</p>
+<h3><a name="retrun_value">retrun value</a></h3>
+<p>A genbank formated region string.</p>
+<p>
+</p>
+<h2><a name="start">Start</a></h2>
+<p>Verry simple wrapper for the overall start[bp] of this region.</p>
+<p>
+</p>
+<h2><a name="end">End</a></h2>
+<p>Verry simple wrapper for the overall end[bp] of this region.</p>
+<p>
+</p>
+<h2><a name="changeregion_add">ChangeRegion_Add</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: basepairs to shift the region</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>Add atribute[0] to each region entry.</p>
+<p>
+</p>
+<h2><a name="changeregion_diff">ChangeRegion_Diff</a></h2>
+<p>Complex adjustment of the gbRegion used by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/sequence_modification/blastLine.html#addfeature">AddFeature in the sequence_modification::blastLine manpage</a>
+if the NCBI BLAST result matches to the reverse strand.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: end of the the BLAST hit on the query sequence</p>
+<p>[0]: end of the search sequence in the BLAST hit</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>Adjust the region to correctly place a feature found originally on a blast database file to the query sequence.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: a genbank formated region string or the undefined</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>Return the parsed regions if atribute[0] is not defined</p>
+<p>Here only the complement and join tags of the genbank formated region string are evaluated.
+The region information is parsed in <a href="#parseregions">ParseRegions</a>.</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>A reference to the  parsed regions is returned.
+</p>
+<pre>
+
+=cut</pre>
+<p>sub Region {</p>
+<pre>
+    my ( $self, $region ) = @_;</pre>
+<pre>
+    my ( @region, $items, $temp ,$regions, $key, $value, $temp, $start, $end, @start, @end);
+    
+    ## Genbank Region Information!!
+    ##
+    ## superRegion = { 'complement'(superRegion); 'join'(superRegion,superRegion); region}
+    ## Pos         = { \d* ; \d*..\d* ; (\d*.\d*)}</pre>
+<pre>
+    return $self-&gt;{regions} unless ( defined $region);</pre>
+<pre>
+    $self-&gt;{items} = $self-&gt;{regions} = undef;</pre>
+<pre>
+    @region = split (&quot;&quot;,$region);
+    $self-&gt;Itemize( \@region, 0 ,0 );
+    $items = $self-&gt;{items};</pre>
+<pre>
+    if ( $region =~ m/complement/ ){
+       $self-&gt;Complement(&quot;complement&quot;);
+    }
+    if ( $region =~ m/join/ ){
+       $self-&gt;Join(&quot;join&quot;);
+    }
+    foreach $temp (@$items){
+#       print &quot;gbRegion ITEMS: $temp\n&quot;;
+       if ( $temp =~ m/\d*\.\./){
+         ## regionen!
+         ($temp, $start, $end) = $self-&gt;ParseRegions($temp);
+         push(@start, $start);
+         push (@end, $end);
+       }
+    }
+    ($start, $end ) = $self-&gt;findStartEnd(\@start,\@end);
+    $self-&gt;Start($start);
+    $self-&gt;End($end);
+#    $regions = $self-&gt;{regions};
+#    foreach $temp ( @$regions){
+#       while ( ( $key, $value) = each ( %$temp)){
+#           while ( my ( $key1, $value1) = each ( %$value)){
+#              $self-&gt;{start} = $value if ( $value &lt; $self-&gt;{start} || ! defined $self-&gt;{start});
+#              $self-&gt;{end} = $value if ( $value &lt; $self-&gt;{end} || ! defined $self-&gt;{end});
+#              
+#           }
+#      }
+#    }
+    return $self-&gt;{regions};
+}</pre>
+<p>
+</p>
+<h2><a name="complement">Complement</a></h2>
+<p>Simple information class for the complement state of this region.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: The complement state is set to 'complement' if this value is defined.</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>'complement' if the region is matching to the reverse strand or undef if not.</p>
+<p>
+</p>
+<h2><a name="getregionfordrawing">getRegionForDrawing</a></h2>
+<p>DEPRICATED use Region instead.</p>
+<p>
+</p>
+<h2><a name="length">Length</a></h2>
+<p>return the overall lenth of this region as defined by <code>End()</code> - Start().</p>
+<p>
+</p>
+<h2><a name="getlengthfordrawing">getLengthForDrawing</a></h2>
+<p>Return a drawable object [ {start =&gt; self-&gt;Start, end =&gt; self-&gt;End()} ]</p>
+<p>
+</p>
+<h2><a name="parseregions">ParseRegions</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: a genbank formated region string stripped from the complement and join tags</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<pre>
+
+ParseRegions splitts up the atribute[0] at ',' and uses L&lt;Itemize_old|&quot;Itemize_old&quot;&gt; to interprete the pieces.</pre>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>ParseRegions a reference to the list of parsed region pieces, the overall start of the region and the overall end of the region.</p>
+<p>
+</p>
+<h2><a name="itemize_old">Itemize_old</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: a region pice in the format &lt;?\d+..\d+&gt;? , \d+ or \d+.\d+</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>A reference to a hash with the structure { tag =&gt; one of [normal,between,,smear] , start =&gt; start in bp, end =&gt; end in bp,
+tag_end =&gt; one of [&gt;,undef], tag_start =&gt; one of [&lt;,undef] }</p>
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/oligo2dnaDB.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#getoligolocationarray">GetOligoLocationArray</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#getinfoid">GetInfoID</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::chromosome_ripper::gbFileMerger</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is used to create the sequence files corresponding to the NimbleGene array design.
+It uses the NimbleGene array design order file and a downloaded version of the NCBI genome version on which the array sdesign is based.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/fileDB.html">the ::database::fileDB manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html">the ::database::designDB manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#getoligolocationarray">GetOligoLocationArray</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#getinfoid">GetInfoID</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>A new object of the class gbFileMerger.</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store where the chip oligos match to the chromosomal regions represented on the chip.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the design string as accepted by <a href="//databases/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the ::databases::designDB manpage</a></p>
+<p>[1]: the reference to the blastResult list as returned by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/sequence_modification/blastResult.html#readblastresults">readBlastResults in the sequence_modification::blastResult manpage</a></p>
+<p>[3]: the filename MySQL entry name as returned by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html#getpuresequencename">getPureSequenceName in the ::root manpage</a></p>
+<p>[4]: the oligo sequence representation as returned by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/nimbleGeneFiles/ndfFile.html#getasfastadb">GetAsFastaDB in the ::nimbleGeneFiles::ndfFile manpage</a> or <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/nimbleGeneFiles/ndfFile.html#writeasfastadb">WriteAsFastaDB in the ::nimbleGeneFiles::ndfFile manpage</a></p>
+<p>
+</p>
+<h2><a name="getoligolocationarray">GetOligoLocationArray</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the design string as accepted by <a href="//databases/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the ::databases::designDB manpage</a></p>
+<p>[1]: the filename MySQL entry name as returned by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html#getpuresequencename">getPureSequenceName in the ::root manpage</a></p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>The reference to a array of hashes with the stucture [ { Oligo_ID =&gt; NimbleGene oligoID, Oligo_start =&gt; start position in basepair on the sequence file,
+Oligo_end =&gt; end position in basepair on the sequence file, FileID =&gt; the internal file id of the genbank formated chromosomal region, Sequence =&gt; the oligo sequence } ]</p>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the design string as accepted by <a href="//databases/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the ::databases::designDB manpage</a></p>
+<p>[1]: the filename MySQL entry name as returned by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html#getpuresequencename">getPureSequenceName in the ::root manpage</a></p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>true if the table Oligo2DNA has at least 100 entries for this design and this chromosomal region, otherwise false</p>
+<p>
+</p>
+<h2><a name="getinfoid">GetInfoID</a></h2>
+<p>See <a href="/databases/hybInfoDB.html#selectid_byhybinfo">SelectID_ByHybInfo in the databases::hybInfoDB manpage</a></p>
+
+</body>
+
+</html>

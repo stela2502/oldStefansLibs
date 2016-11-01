@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_sampleTable.pl.xml,v 1.1.2.3 2009/11/20 07:37:38 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>sampleTable_sample_lable</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the lable of the storage tubes" spancontent="?">sample_lable</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>sampleTable_name</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="some additional information, that you could use to add a tag to the sample" spancontent="?">name</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>sampleTable_subject_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the subjects table" spancontent="?">subject_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, identifier FROM subjects"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="identifier"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>sampleTable_storage_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the possible storage places" spancontent="?">storage_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, building, floor, room, description FROM storages"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="building,floor,room,description"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>sampleTable_tissue_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the tissues table" spancontent="?">tissue_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, organism_id, name, extraction_protocol_id FROM tissue"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="organism_id,name,extraction_protocol_id"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>sampleTable_extraction_protocol_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the protocols table" spancontent="?">extraction_protocol_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, name FROM protocols"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="name"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

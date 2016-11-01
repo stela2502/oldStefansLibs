@@ -1,0 +1,8 @@
+ NEEDED values:
+ -grant_table_name
+       the unique name of this grant
+ -grant_table_description
+       a short description of that grant
+ -grant_table_application_file
+       a linked file, that contains all the information for that grant
+grant_table_name;grant_table_description;grant_table_application_file;

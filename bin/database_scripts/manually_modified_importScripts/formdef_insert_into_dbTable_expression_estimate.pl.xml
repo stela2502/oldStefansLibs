@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_expression_estimate.pl.xml,v 1.1.2.1 2009/11/13 14:13:29 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>radio</type>
+        <name>expression_estimate_sample_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the samples table" spancontent="?">sample_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, sample_lable, subject_id, tissue_id FROM samples"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="sample_lable,subject_id,tissue_id"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>expression_estimate_program_call</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the cmd string that lead to the creation of the datasets" spancontent="?">program_call</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>expression_estimate_affy_desc_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the id of the affy description table entry, that describes this probeset lib" spancontent="?">affy_desc_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id,  FROM Affy_descriptions"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text=""></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

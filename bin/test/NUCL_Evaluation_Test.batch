@@ -1,0 +1,1 @@
+./regionXY_plot_with_HMM_nucl.pl regionLists/testRegion.txt List_Orig_GFF/exVivo_proB_proT.txt hmm/2007_04_10/Iteration9.txt /Volumes/NucleosomePositi/nucleosome_prediction/IgH.tab 

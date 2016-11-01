@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/array_TStat.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#getinfo">getInfo</a></li>
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+		<li><a href="#getvalue_forinfoid">GetValue_forInfoID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>database::array_TStat</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table Array_Data_TStat where all probe level statistics are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html">the database::hybInfoDB manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#getinfo">getInfo</a></p>
+<p><a href="#getvalue_forinfoid">GetValue_forInfoID</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>A object of the class array_TStat</p>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#selectid_byhybinfo">SelectID_ByHybInfo in the database::hybInfoDB manpage</a></p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>true if more than 1000 values are stored in the database ore false if less than 1000 values are stored</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the probe level test statistic values foreach oligo.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="getinfo">getInfo</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#getinfoids_forhybtype">GetInfoIDs_forHybType in the ::database::hybInfoDB manpage</a></p>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the nimbleGeneID</p>
+<p>[1]: either the antibody specificity or the DNA marker (cy3 or cy5)</p>
+<p>[2]: the celltype or the celltype id</p>
+<p>[3]: the organism string</p>
+<p>[4]: the DNA fluorescence marker (cy3 or cy5)</p>
+<p>[5]: reference to the data hash with the format { oligoID =&gt; the oligo ID, 't-value' =&gt; the probe level test statistics value , 
+GFF =&gt; the enrichment factor based on the mean oligo hybridization values}</p>
+<p>
+</p>
+<h2><a name="getvalue_forinfoid">GetValue_forInfoID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the hybridization info id as returned by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#selectid_byhybinfo">SelectID_ByHybInfo in the database::hybInfoDB manpage</a></p>
+<p>[1]: either 'tstat' or 'gff_summary'</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>A reference to a hash with the structure { OlgioID =&gt; $value}. The variable content for $value depends on atribute[1].
+If atribute[1] eq 'tstat' $value represents the probe level test statistics value for the given olgio, 
+if atribute[1] equals 'gff_summary' $value represents the enrichment factor based on the mean oligo hybridization values.</p>
+
+</body>
+
+</html>

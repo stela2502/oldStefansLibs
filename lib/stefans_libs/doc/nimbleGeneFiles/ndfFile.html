@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/nimbleGeneFiles/ndfFile.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#adddata">AddData</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#getasfastadb">GetAsFastaDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#writeasfastadb">WriteAsFastaDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::nimbleGeneFiles::ndfFile</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#adddata">AddData</a></p>
+<p><a href="#getasfastadb">GetAsFastaDB</a></p>
+<p><a href="#writeasfastadb">WriteAsFastaDB</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>Returns a object of the class ndfFile</p>
+<p>
+</p>
+<h2><a name="adddata">AddData</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: absolute location of a NimbleGene formated .ndf array design file</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>a reference to a array of hashes where the values of the file are accessable by the column lable.
+For a detailed description please refer to the NimbleGene DesignFile information.</p>
+<p>
+</p>
+<h2><a name="getasfastadb">GetAsFastaDB</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: absolute location of a NimbleGene formated .ndf array design file</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>returns a reference to a hash with the structure { OlgioID =&gt; Oligo_sequence }</p>
+<p>
+</p>
+<h2><a name="writeasfastadb">WriteAsFastaDB</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: absolute location of a NimbleGene formated .ndf array design file</p>
+<p>[1]: absolute location of the fasta formated oligo database (new file)</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>returns a reference to a hash with the structure { OlgioID =&gt; Oligo_sequence }</p>
+
+</body>
+
+</html>

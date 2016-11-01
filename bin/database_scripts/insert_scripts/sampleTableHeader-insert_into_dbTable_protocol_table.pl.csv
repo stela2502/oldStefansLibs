@@ -1,0 +1,25 @@
+ NEEDED values:
+ -protocol_table_name
+       the name of the protocol
+ -protocol_table_description
+       a (long) description of the protocol
+ -protocol_table_version
+       the version of that protocol
+ -protocol_table_working_copy
+       The working copy of the protocol - it should be possible to print that
+ -external_files_file
+       the name of the file
+ -external_files_filetype
+       the filetype (one of picture, text_document or data_file
+ -protocol_table_PMID
+       An optional link to pubmed - if the protocol was published
+ LINKAGE variables:
+ -protocol_table_original_protocol_description_id
+       the link to the file
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -external_files_file
+          the name of the file
+    -external_files_filetype
+          the filetype (one of picture, text_document or data_file
+protocol_table_name;protocol_table_description;protocol_table_version;protocol_table_working_copy;protocol_table_original_protocol_description_id;external_files_file;external_files_filetype;external_files_file;external_files_filetype;protocol_table_PMID;

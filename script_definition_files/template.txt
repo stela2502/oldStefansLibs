@@ -1,0 +1,22 @@
+executable_name=
+data_handler_class=
+function_to_call=
+description=
+##
+##
+includeStrings
+## the string you would use to include a lib like
+## use stefans_libs::root;
+finish includeStrings
+##
+##
+variables
+## the variable definitions lik
+## <variable_name>;<variable_type>;<use_as_file_string>;<NOT_needed>;<description>\n".
+##
+## <variable_name> = a string WITHOUT spaces
+## <variable_type> = one of ( VARCHAR(<integer>), TEXT, FILE )
+## <use_as_file_string> = 1||0
+## <NOT_needed> = either 1 = NOT needed or 0 = needed
+## <description> = a sring that describes the variable (no \" or ')
+finish variables

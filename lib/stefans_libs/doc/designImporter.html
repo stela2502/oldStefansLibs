@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/designImporter.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#adddesign">AddDesign</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#doblast4designstring">DoBlast4designString</a></li>
+		<ul>
+
+			<li><a href="#depends_on">depends on</a></li>
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">method</a></li>
+		</ul>
+
+		<li><a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#createfastadb">createFastaDB</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::designImporter</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The class designImporter is used to import NimbleGene Array Designs into a MySQL Database.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p>the NCBI megablast program
+</p>
+<pre>
+
+L&lt;::nimbleGeneFiles::ndfFile&gt;,</pre>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html">the ::database::designDB manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/sequence_modification/blastResult.html">the ::sequence_modification::blastResult manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/oligo2dnaDB.html">the ::database::oligo2dnaDB manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/chromosome_ripper/seq_contig.html">the ::chromosome_ripper::seq_contig manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/chromosome_ripper/gbFileMerger.html">the ::chromosome_ripper::gbFileMerger manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/fileDB.html">the ::database::fileDB manpage</a> and</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//gbFile.html">the ::gbFile manpage</a>.</p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#adddesign">AddDesign</a>,</p>
+<p><a href="#doblast4designstring">DoBlast4designString</a>,</p>
+<p><a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a>,</p>
+<p><a href="#createfastadb">createFastaDB</a>.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>designImporter-&gt;<code>new()</code> returns a new designImporter object.</p>
+<p>
+</p>
+<h2><a name="adddesign">AddDesign</a></h2>
+<p>This Method uses <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/fileDB.html">the ::database::fileDB manpage</a> to check if the chromosomal regions that
+are represented on this 'ChIP on chip' array are already extracted from the NCBI genome database.
+If these files are not found it first invoces the method <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a>,
+second adds all filenames found in the text file arguments[7] together with the newly created chromosomal representations to the fileBD 
+using the <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/fileDB.html#insertdata">insertData in the database::fileDB manpage</a>
+and finally invoces the method <a href="#doblast4designstring">DoBlast4designString</a>.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the array design identification string</p>
+<p>[1]: described in <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a> atribute[0]</p>
+<p>[2]: described in <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a> atribute[1]</p>
+<p>[3]: described in <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a> atribute[2]</p>
+<p>[4]: described in <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a> atribute[3]</p>
+<p>[5]: described in <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a> atribute[4]</p>
+<p>[6]: described in <a href="#chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a> atribute[5]</p>
+<p>[7]: The path to a txt formated file with the location of additional 
+genbank formated sequences that have to be used for the ChIP evaluation. This variable can be undefined.</p>
+<p>
+</p>
+<h2><a name="doblast4designstring">DoBlast4designString</a></h2>
+<p>This method matches the oligos on the 'ChIP on chip' array to the genbank formated files representing the 'ChIP on chip' array.</p>
+<p>
+</p>
+<h3><a name="depends_on">depends on</a></h3>
+<pre>
+
+The NCBI megablast program as it is used for sequence matching.</pre>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0] = The 'ChIP on chip' array design string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/fileDB.html#selectfiles_bydesignid">SelectFiles_ByDesignId in the database::fileDB manpage</a>.</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>(1) the blast formated oligo database is created by the method <a href="#createfastadb">createFastaDB</a></p>
+<p>(2) the genbank formated sequence files that represent the 'ChIP on chip' array design are located 
+by the method SelectFiles_ByDesignId in <a href="/stefans_libs/database/fileDB.html#selectfiles_bydesignid">SelectFiles_ByDesignId in the stefans_libs::database::fileDB manpage</a>.</p>
+<p>(3) a megablast search foreach genbank file is initiated</p>
+<p>(4) the full length oligo hits are recovered using the method readBlastResults in <a href="/stefans_libs/sequence_modification/blastResult.html#readblastresults">readBlastResults in the stefans_libs::sequence_modification::blastResult manpage</a>
+with minLength = 49, minPercIdent = 100, maxGapOpen = 0 and the DoIMGTsearch mode definition 'AllBlastHits'</p>
+<p>(5) all valid oligo matches are inserte into the MySQL database using the method insertData in <a href="/stefans_libs/database/oligo2dnaDB.html#insertdata">insertData in the stefans_libs::database::oligo2dnaDB manpage</a>.</p>
+<p>
+</p>
+<h2><a name="chromosomalregions2seqfiles">ChromosomalRegions2SeqFiles</a></h2>
+<p>ChromosomalRegions2SeqFiles uses <a href="/stefans_libs/chromosome_ripper/seq_contig.html">the stefans_libs::chromosome_ripper::seq_contig manpage</a> and <a href="/stefans_libs/chromosome_ripper/gbFileMerger.html">the stefans_libs::chromosome_ripper::gbFileMerger manpage</a>
+(1) extract the chromosme information from the NCBI genome data and
+(2) uses the NimbleGene Array Design Instructions to create the genbank files</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>The arguments have to be issued in this exact sequence!</p>
+<p>[0]: described in <a href="/stefans_libs/chromosome_ripper/gbFileMerger.html#create_gbfiles">Create_GBfiles in the stefans_libs::chromosome_ripper::gbFileMerger manpage</a></p>
+<p>[1]: described in <a href="/stefans_libs/chromosome_ripper/seq_contig.html#insertdatafile">insertDataFile in the stefans_libs::chromosome_ripper::seq_contig manpage</a></p>
+<p>[2]: described in <a href="/stefans_libs/chromosome_ripper/seq_contig.html#insertdatafile">insertDataFile in the stefans_libs::chromosome_ripper::seq_contig manpage</a></p>
+<p>[3]: described in <a href="/stefans_libs/chromosome_ripper/seq_contig.html#insertdatafile">insertDataFile in the stefans_libs::chromosome_ripper::seq_contig manpage</a></p>
+<p>[4]: described in <a href="/stefans_libs/chromosome_ripper/gbFileMerger.html#create_gbfiles">Create_GBfiles in the stefans_libs::chromosome_ripper::gbFileMerger manpage</a></p>
+<p>[5]: described in <a href="/stefans_libs/chromosome_ripper/gbFileMerger.html#create_gbfiles">Create_GBfiles in the stefans_libs::chromosome_ripper::gbFileMerger manpage</a> default is 'C57BL/6J'</p>
+<p>[6]: described in <a href="/stefans_libs/chromosome_ripper/gbFileMerger.html#create_gbfiles">Create_GBfiles in the stefans_libs::chromosome_ripper::gbFileMerger manpage</a></p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>See <a href="/stefans_libs/chromosome_ripper/gbFileMerger.html#create_gbfiles">Create_GBfiles in the stefans_libs::chromosome_ripper::gbFileMerger manpage</a></p>
+<p>
+</p>
+<h2><a name="createfastadb">createFastaDB</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the ChIP on chip design id as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the database::designDB manpage</a></p>
+<p>[1]: the absolute filename to write the fasta formated oligo database to</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>createFastaDB uses the <a href="/stefans_libs/nimbleGeneFiles/ndfFile.html#selectdesignfile_byid">SelectDesignFile_ById in the stefans_libs::nimbleGeneFiles::ndfFile manpage</a>
+to extract the oligo sequence data from the NimbleGene design files
+, <a href="/stefans_libs/database/designDB.html">the stefans_libs::database::designDB manpage</a> to find the NimbleGene DesignFile location and
+<a href="/stefans_libs/nimbleGeneFiles/ndfFile.html#writeasfastadb">WriteAsFastaDB in the stefans_libs::nimbleGeneFiles::ndfFile manpage</a> to save the fasta formated oligo database.</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>See <a href="/stefans_libs/nimbleGeneFiles/ndfFile.html#writeasfastadb">WriteAsFastaDB in the stefans_libs::nimbleGeneFiles::ndfFile manpage</a></p>
+
+</body>
+
+</html>

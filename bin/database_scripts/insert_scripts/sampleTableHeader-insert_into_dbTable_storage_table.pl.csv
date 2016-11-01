@@ -1,0 +1,14 @@
+ NEEDED values:
+ -storage_table_temperature
+       the temperatore of the storage
+ -storage_table_building
+       the building the storgae is placed in
+ -storage_table_floor
+       the floor the storage is located
+ -storage_table_room
+       the room of the storage
+ -storage_table_box_label
+       the lable of the box in the storage
+ -storage_table_description
+       a description of the storage (e.g. small white fridge)
+storage_table_temperature;storage_table_building;storage_table_floor;storage_table_room;storage_table_box_label;storage_table_description;

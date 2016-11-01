@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/importHyb.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#addalldatainpath">AddAllDataInPath</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">method</a></li>
+		</ul>
+
+		<li><a href="#adddata">AddData</a></li>
+		<li><a href="#getpairfiles">GetPairFiles</a></li>
+		<li><a href="#getgff_files">GetGFF_Files</a></li>
+		<li><a href="#userinterface">userInterface</a></li>
+		<li><a href="#getsampleinfo">GetSampleInfo</a></li>
+		<li><a href="#interface_designid">interface_designID</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name_stefans_libs__importhyb">NAME
+stefans_libs::importHyb</a></h1>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>importHyb is the part of the libary, that manages the import of the NimbleGene hybridisation and enrichemnt value data.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="/stefans_libs/gbFile.html">the stefans_libs::gbFile manpage</a></p>
+<p><a href="/stefans_libs/database/array_Hyb.html">the stefans_libs::database::array_Hyb manpage</a></p>
+<p><a href="/stefans_libs/database/array_GFF.html">the stefans_libs::database::array_GFF manpage</a></p>
+<p><a href="/stefans_libs/database/antibodyDB.html">the stefans_libs::database::antibodyDB manpage</a></p>
+<p><a href="/stefans_libs/database/cellTypeDB.html">the stefans_libs::database::cellTypeDB manpage</a></p>
+<p><a href="/stefans_libs/database/hybInfoDB.html">the stefans_libs::database::hybInfoDB manpage</a></p>
+<p><a href="/stefans_libs/nimbleGeneFiles/pairFile.html">the stefans_libs::nimbleGeneFiles::pairFile manpage</a></p>
+<p><a href="/stefans_libs/nimbleGeneFiles/gffFile.html">the stefans_libs::nimbleGeneFiles::gffFile manpage</a></p>
+<p><a href="/stefans_libs/database/designDB.html">the stefans_libs::database::designDB manpage</a></p>
+<p><a href="/stefans_libs/designImporter.html">the stefans_libs::designImporter manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#addalldatainpath">AddAllDataInPath</a></p>
+<p><a href="#adddata">AddData</a></p>
+<p>#<a href="#getoligoids">GetOligoIDs</a></p>
+<p><a href="#interface_designid">interface_designID</a></p>
+<p><a href="#getpairfiles">GetPairFiles</a></p>
+<p><a href="#getgff_files">GetGFF_Files</a></p>
+<p><a href="#getdesignfile">GetDesignFile</a></p>
+<p><a href="#userinterface">userInterface</a></p>
+<p><a href="#getsampleinfo">GetSampleInfo</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>A new object of the class importHyb.</p>
+<p>
+</p>
+<h2><a name="addalldatainpath">AddAllDataInPath</a></h2>
+<p>AddAllDataInPath is the main method to import the NimbleGene Array data.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>path: the path to the NimbleGene array data (the base Directory where SampleKey.txt lies in.</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>All types of array data are handled.
+The method <a href="#getdesignfile">GetDesignFile</a> handles the array design data stored in the path $path/DesignFiles/,
+the method <a href="#getsampleinfo">GetSampleInfo</a> handles the SampleKey.txt file,
+the method <a href="#getgff_files">GetGFF_Files</a> handles the NimbleGene enrichment factors (gff) in the path $path/GFF/ and
+the method <a href="#getpairfiles">GetPairFiles</a> handles the NimbleGene hybridization values in the path $path/PairData/.
+Finaly all information is stored with the method <a href="#adddata">AddData</a>.</p>
+<p>This method always retruns '1'.</p>
+<p>
+</p>
+<h2><a name="adddata">AddData</a></h2>
+<p>AddData imports the hybridization and enrichemnt values from the NimbleGene provided text files into the local database.
+For the hybridization values it calls <a href="/stefans_libs/nimbleGeneFiles/pairFile.html#getdata">GetData in the stefans_libs::nimbleGeneFiles::pairFile manpage</a> to import the array hybridization values and
+<a href="/stefans_libs/database/array_Hyb.html#insertdata">insertData in the stefans_libs::database::array_Hyb manpage</a> to store the hybridization values into the database.
+For the enrichment factors if calls <a href="/stefans_libs/nimbleGeneFiles/gffFile.html#getdata">GetData in the stefans_libs::nimbleGeneFiles::gffFile manpage</a> to import the enrichment factors and
+<a href="/stefans_libs/database/array_GFF.html#insertdata">insertData in the stefans_libs::database::array_GFF manpage</a> to store the values into the database.</p>
+<p>
+</p>
+<h2><a name="getpairfiles">GetPairFiles</a></h2>
+<p>This method uses the internal data hash $self-&gt;{nimbleInfo} to recieve the NimbleGene array IDs
+and searches the $path/PairData/ for hybridization files containing these NimbleGene IDs in the
+filename. It also resolves the labeling state (cy3 or cy5) and stores the complete filename in the
+$self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Cy[35]_File} hash value.</p>
+<p>
+</p>
+<h2><a name="getgff_files">GetGFF_Files</a></h2>
+<p>This method uses the internal data hash $self-&gt;{nimbleInfo} to recieve the NimbleGene array IDs
+and searches the $path/GFF/ for gff files containing these NimbleGene IDs in the
+filename. It stores the complete filename in the
+$self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{GFF_File} hash value.</p>
+<p>
+</p>
+<h2><a name="userinterface">userInterface</a></h2>
+<p>This method is called to interprete the SampleKey.txt file.
+The layout of this interface has to be improved, but most probably it should be replaced by a GUI.</p>
+<p>The function in short: foreach hybridization type (cy3 or cy5) you have to specify the antibody and the celltype,
+that has been used for this experiment. You get a list of known celltypes or known antibodys where you have to specify
+the ID of the antibody or celltype that was used in this experiment.
+If the used antibody or celltype is presented in the list you have to insert a new entry into the database giving the 'n' character.
+</p>
+<pre>
+
+=cut</pre>
+<p>sub userInterface {
+    my ( $self, $what, $line, $nimbleID ) = @_;</p>
+<pre>
+    my ( $temp, $Id, $key, $antibodyDB,@line );
+    @line = split(&quot;\t&quot;,$line);</pre>
+<pre>
+    if ( $what eq &quot;AB&quot; ) {
+        print &quot;\n*****************************\n&quot;,
+          &quot;**   User Help Required!   **\n&quot;, &quot;*****************************\n&quot;,
+          &quot;** possible antibodys: **\n&quot;, #I found the following entry in SampleKey.txt: **\n&quot;,
+#          &quot;** $line **\n&quot;,
+&quot;*******************************************************************************\n&quot;,
+&quot;** could you please specify whih Antibody has been used to precipitate here? **\n&quot;;
+        $antibodyDB = $self-&gt;{antibodyDB}-&gt;GetAllAntibodyInfosByID();
+        print &quot;** Possible antibodys:\n&quot;;
+        print &quot;** ID\tSpecificity&quot;;
+        foreach my $ID ( sort keys %$antibodyDB ) {
+            print
+              &quot;$antibodyDB-&gt;{$ID}-&gt;{ID}\t$antibodyDB-&gt;{$ID}-&gt;{Specificity}\n&quot;
+              if ( defined $antibodyDB-&gt;{$ID} );
+        }
+        print
+&quot;\n******************************************************************\n&quot;,
+&quot;  $line **\n&quot;,
+&quot;** Bitte die antibody-ID eingeben (p = Abbruch , n = neue Info eingebn): **\n&quot;,
+&quot;** $line[6] $line[7] **\n&quot;;
+&quot;**--------------**************************************************\n&quot;,
+          &quot;** ID = \n&quot;;
+        $Id = undef;
+        $Id = &lt;STDIN&gt;;
+        chop $Id;
+        $self-&gt;intefaceAdd( $what, $nimbleID ) if ( $Id eq &quot;n&quot; );
+        die if ( $Id eq &quot;q&quot; );
+        if ( defined $antibodyDB-&gt;{$Id} ) {
+            return $antibodyDB-&gt;{$Id}-&gt;{Specificity};</pre>
+<p>#              $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{AntibodyID} = $Id;
+#              $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Specificity} =  $antibodyDB-&gt;{$Id}-&gt;{Specificity};
+        }
+        else {
+            return $self-&gt;userInterface( $what, $line, $nimbleID );
+        }</p>
+<pre>
+        #        return $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Specificity};
+    }
+    if ( $what eq &quot;Cell&quot; ) {
+        print &quot;-------------------------\n&quot;, &quot;-- User Help Required! --\n&quot;,
+          &quot;-------------------------\n&quot;,
+          &quot;-- possible celltypes:  --\n&quot;, #I found the following entry in SampleKey.txt:           --\n&quot;,
+#          &quot;-- $line --\n&quot;,
+          &quot;-------------------------------------------------------------\n&quot;,
+          &quot;-- could you please specify whitch Celltype has been used? --\n&quot;;
+        my ( $cellTypeDB, $rv, $ID );
+        $cellTypeDB = $self-&gt;{cellTypeDB}-&gt;GetAllCellInfosByID();
+        print &quot;Possible Celltypes:\n&quot;;
+        print &quot;ID\tOrganism\tCelltype\n&quot;;
+        foreach $ID ( sort keys %$cellTypeDB ) {
+            print
+&quot;$cellTypeDB-&gt;{$ID}-&gt;{ID}\t$cellTypeDB-&gt;{$ID}-&gt;{Organism}\t$cellTypeDB-&gt;{$ID}-&gt;{Celltype}\n&quot;;
+        }
+        print
+&quot;------------------------------------------------------------------\n&quot;,
+&quot;-- $line --\n&quot;,
+&quot;-- Bitte die celltype-ID eingeben (q = Abbruch, n = neue Info eingeben): --\n&quot;,
+&quot;-- $line[6]\t$line[7]                                           --\n&quot;,
+&quot;--**********------------------------------------------------------\n&quot;;
+        $Id = undef;
+        $Id = &lt;STDIN&gt;;
+        die if ( $Id =~ m/q/ );</pre>
+<pre>
+        $self-&gt;intefaceAdd( $what, $nimbleID ) if ( $Id =~ m/n/ );</pre>
+<pre>
+        chop $Id;
+        if ( defined $cellTypeDB-&gt;{$Id} ) {</pre>
+<pre>
+            #               $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Cell} = $Id;
+            print &quot;---------------------------------------------\n&quot;,
+&quot;-- used $cellTypeDB-&gt;{$Id}-&gt;{Celltype} , $cellTypeDB-&gt;{$Id}-&gt;{Organism} --\n&quot;,
+              &quot;---------------------------------------------\n&quot;;
+            return $cellTypeDB-&gt;{$Id}-&gt;{Celltype},
+              $cellTypeDB-&gt;{$Id}-&gt;{Organism};</pre>
+<p>#               $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Celltype} = $cellTypeDB-&gt;{$Id}-&gt;{Celltype};
+#               $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Organism} = $cellTypeDB-&gt;{$Id}-&gt;{Organism};
+#               print ``-------------------\n'',
+#                     ``-- Added ID $Id! --\n'',
+#                     ``-------------------\n'';
+        }
+        else {
+            return $self-&gt;userInterface( $what, $line, $nimbleID );
+        }</p>
+<pre>
+        #        return 1;
+    }
+}</pre>
+<p>sub intefaceAdd {
+    my ( $self, $what, $nimbleID ) = @_;</p>
+<pre>
+    my ( $temp, $spez, $herst, $orderID );
+    if ( $what eq &quot;AB&quot; ) {
+        print &quot;Bitte Geben geben Sie die Spezifität an\n&quot;;
+        $spez = undef;
+        $spez = &lt;STDIN&gt;;
+        chop $spez;
+        print &quot;Bitte Geben geben Sie den Hersteller an:\n&quot;;
+        $herst = undef;
+        $herst = &lt;STDIN&gt;;
+        chop $herst;
+        print &quot;Bitte Geben geben Sie den ProduktID ein:\n&quot;;
+        $orderID = undef;
+        $orderID = &lt;STDIN&gt;;
+        chop $orderID;</pre>
+<pre>
+        while ( !( $temp =~ m/[yYnNjJ]/ ) ) {
+            print
+&quot;sind diese Angaben korrekt?(J/N)\nSpezifität = $spez\tHersteller = $herst\tProduktID = $orderID\n&quot;;
+            $temp = undef;
+            $temp = &lt;STDIN&gt;;
+        }
+        if ( $temp =~ m/[nN]/ ) {
+            $self-&gt;intefaceAdd( $what, $nimbleID );
+            return;
+        }
+        $self-&gt;{antibodyDB}-&gt;insertData( $herst, $orderID, $spez );
+        $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{AntibodyID} =
+          $self-&gt;{antibodyDB}-&gt;SelectId_BySpecificity($spez);
+        return;
+    }
+    if ( $what eq &quot;Cell&quot; ) {
+        my ( $celltype, $organism );
+        print &quot;Bitte Geben geben Sie den Organismus an\n&quot;;
+        $organism = undef;
+        $organism = &lt;STDIN&gt;;
+        chop $organism;
+        print &quot;Bitte Geben geben Sie den Zelltyp an:\n&quot;;
+        $celltype = undef;
+        $celltype = &lt;STDIN&gt;;
+        chop $celltype;</pre>
+<pre>
+        while ( !( $temp =~ m/[yYnNjJ]/ ) ) {
+            print
+&quot;sind diese Angaben korrekt?(J/N)\nOrganismus = $organism\tZelltyp = $celltype\n&quot;;
+            $temp = undef;
+            $temp = &lt;STDIN&gt;;
+        }
+        if ( $temp =~ m/[nN]/ ) {
+            $self-&gt;intefaceAdd( $what, $nimbleID );
+            return;
+        }
+        $self-&gt;{cellTypeDB}-&gt;insertData( $celltype, $organism );
+        $self-&gt;{nimbleInfo}-&gt;{$nimbleID}-&gt;{Cell} =
+          $self-&gt;{cellTypeDB}-&gt;SelectID_ByCellType( $celltype, $organism );
+        return;
+    }
+}</pre>
+<p>
+</p>
+<h2><a name="getsampleinfo">GetSampleInfo</a></h2>
+<p>GetSampleInfo reads the 'SampleKey.txt' line per line and tries to recieve the experimental conditions for this experiment.
+If user interaction is needed the method <a href="#userinterface">userInterface</a> or <a href="#interface_designid">interface_designID</a> is called.</p>
+<p>If the NimbleGene 'ChIP on chip' design is not yet imported, the function <a href="/stefans_libs/designImporter.html#adddesign">AddDesign in the stefans_libs::designImporter manpage</a> is called.
+The information for this functio is recieved by the method <a href="#interface_designid">interface_designID</a>.</p>
+<p>
+</p>
+<h2><a name="interface_designid">interface_designID</a></h2>
+<p>This method is used to insert the array design information into the database.</p>
+<p>The whole program is based on locally stored ncbi genome data. From this genome data the 
+regions which are represented on the 'ChIP on chip' array are extracted so you easily can insert
+your own information into these files as i.e. regulative regions unknown to the genome project.
+Therefor you have to download the NCBI genome data from <a href="ftp://ftp.ncbi.nih.gov/genomes/">ftp://ftp.ncbi.nih.gov/genomes/</a>.
+All the information needet for the array design import are stored in the NCBI genome data
+. Simply answer the questions.</p>
+<p>The import algorithm lies in <a href="/stefans_libs/database/designDB.html#insertdata">insertData in the stefans_libs::database::designDB manpage</a></p>
+
+</body>
+
+</html>

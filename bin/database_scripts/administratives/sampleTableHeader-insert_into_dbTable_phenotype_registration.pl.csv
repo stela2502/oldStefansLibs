@@ -1,0 +1,27 @@
+ NEEDED values:
+ -phenotype_registration_name
+       
+ -phenotype_registration_description
+       
+ -phenotype_registration_perl_module_name
+       the name of the perl module, that is able to handle the datatype
+ -phenotype_registration_connection_type
+       
+ -phenotype_registration_table_name
+       this value will be automatically creates as pheno_\$this->name and will be the table name for the dataset
+ -phenotype_registration_module_spec_restr
+       a data string, that is interpreted by the data handling perl module and defines further restrictions
+ -phenotype_registration_min_val
+       a data string, that is either a number for the continuose modules or a string for the binary modules
+ -phenotype_registration_max_val
+       a data string, that is either a number for the continuose modules or a string for the binary modules
+ -phenotype_registration_unit
+       which unit is used to store a value
+ LINKAGE variables:
+ -phenotype_registration_protocol_id
+       the link to the protocol table entry describing the protocol for the phenotype generation
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -protocol_table_name
+          the name of the protocol
+phenotype_registration_name;phenotype_registration_protocol_id;protocol_table_name;phenotype_registration_description;phenotype_registration_perl_module_name;phenotype_registration_connection_type;phenotype_registration_table_name;phenotype_registration_module_spec_restr;phenotype_registration_min_val;phenotype_registration_max_val;phenotype_registration_unit;

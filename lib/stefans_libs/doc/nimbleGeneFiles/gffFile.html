@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/nimbleGeneFiles/gffFile.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#getdata">GetData</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::nimbleGeneFiles::gffFile</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p>none</p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#getdata">GetData</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="getdata">GetData</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the absolute position of the NimbleGene pair file</p>
+<p>[1]: either the undefined value or 'position'</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>There are two possibilities depending on the argument[1]: (1) argument[1] is not defined:
+a reference to a hash with the structure of {oligoID =&gt; value}; (2) argument[1] equals 'position':
+a reference to a array of hashes with the structure [ { oligoID =&gt; oligoID , filename =&gt; name of the chromosomal region , 
+start =&gt; start in bp on this chromosomal region, end =&gt; end in bp on this chromosomal region, value =&gt; value} ]
+as they occure in the gff file.
+=cut</p>
+<p>sub GetData{
+  my ( $self, $file, $what) = @_;
+</p>
+<pre>
+
+  my ( @line, $data, $oligoID, $value, $chromosomalRegion, $temp );
+  open ( IN, &quot;&lt;$file&quot;) or die &quot;Konnte File $file nicht öffnnen!\n&quot;;</pre>
+<pre>
+  unless (defined $what){
+  while (&lt;IN&gt;){
+       chomp $_;
+       @line = split(&quot;\t&quot;,$_);
+       $oligoID = $line[8];
+       $value   = $line[5];
+       unless ( $oligoID =~ m/(CHR\d+[PR]\d+)/ ){
+             print &quot;hier stimmt was nicht! $oligoID -&gt; $value\n&quot;;
+             next;
+       }
+       $oligoID = $1;
+       $data-&gt;{$oligoID} = $value;
+  }
+  }
+  elsif ( $what eq &quot;position&quot;){
+  print &quot;position\n&quot;;
+  my ( @data);
+  $temp = 0;
+  while (&lt;IN&gt;){
+       chomp $_;
+       @line = split(&quot;\t&quot;,$_);
+       $oligoID = $line[8];
+       unless ( $oligoID =~ m/(CHR\d+[PR]\d+)/ ){
+             print &quot;hier stimmt was nicht! $oligoID -&gt; $value\n&quot;;
+             next;
+       }
+       $oligoID = $1;</pre>
+<pre>
+       my $hash = {
+          oligoID =&gt; $oligoID,
+          filename =&gt; $line[0],
+          start =&gt; $line[3],
+          end =&gt; $line[4],
+          value =&gt; $line[5]
+       };
+       push (@data,$hash);
+       $temp ++;
+  }
+  print &quot;$temp oligos in file $file\n&quot;;
+  $data = \@data;
+  }
+  
+  return $data;
+}</pre>
+<p>1;
+</p>
+
+</body>
+
+</html>

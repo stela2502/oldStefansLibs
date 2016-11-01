@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/array_GFF.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+		<li><a href="#getinfoids_forhybtype">GetInfoIDs_forHybType</a></li>
+		<li><a href="#getgff_forinfoid">GetGFF_forInfoID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#getinfoid">GetInfoID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>database::array_GFF</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table Array_Data_GFF where all enrichment factors are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html">the database::hybInfoDB manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#getinfoids_forhybtype">GetInfoIDs_forHybType</a></p>
+<p><a href="#getgff_forinfoid">GetGFF_forInfoID</a></p>
+<p><a href="#getinfoid">GetInfoID</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class array_GFF</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the enrichment factors foreach oligo.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the nimbleGeneID</p>
+<p>[1]: either the antibody specificity or the DNA marker (cy3 or cy5)</p>
+<p>[2]: 'nimblegene' or 'normalized'</p>
+<p>[3]: reference to the data hash format depends on the [2] value:
+'nimblegene': {OlgigoID =&gt; value} or 'normalized': {pos, normalized, InfoID}</p>
+<p>
+</p>
+<h2><a name="getinfoids_forhybtype">GetInfoIDs_forHybType</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#getinfoids_forhybtype">GetInfoIDs_forHybType in the ::database::hybInfoDB manpage</a></p>
+<p>
+</p>
+<h2><a name="getgff_forinfoid">GetGFF_forInfoID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the hybridization Id that can be found with <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#getinfoids_forhybtype">GetInfoIDs_forHybType in the ::database::hybInfoDB manpage</a></p>
+<p>[1]: either 'nimbleGFF_ID', 'nimbleGFF_OligoID', 'norm_ID' or 'norm_OligoID'</p>
+<p>The return values are a reference to a hash and the total count of enries in tah hash.
+The structure of the hash depends on the atribute[1], but it always looks like {key =&gt; value}. 
+The keys can either be the OligoID if the atribute[1] contains '_OligoID' or the unique table line Id if the atribute[1] contains '_ID'.
+The values can either be the original NimbleGene value if the atribute contains 'nimbleGFF' or the normalized value if the atribute[1] contains 'norm'.
+=cut</p>
+<p>sub GetGFF_forInfoID{
+    my ( $self, $InfoID, $what ) = @_;</p>
+<pre>
+    my ( $rv , $sth, $id, $value, $return);
+    $rv = &quot;select ID, nimbleGene from Array_Data_Hyb where InfoID = $InfoID&quot; if ($what eq &quot;nimbleGFF_ID&quot;);
+    $rv = &quot;select OligoId, nimbleGene from Array_Data_Hyb where InfoID = $InfoID&quot; if ($what eq &quot;nimbleGFF_OligoID&quot;);
+    $rv = &quot;select ID , Normalized from Array_Data_Hyb where InfoID = $InfoID&quot; if ($what eq &quot;norm_ID&quot;);
+    $rv = &quot;select OligoId , Normalized from Array_Data_Hyb where InfoID = $InfoID&quot; if ($what eq &quot;norm_OligoID&quot;);
+    die &quot;PossibleValues for array_Hyb-&gt;GetHybValue_forInfoID $what are ( nimbleGFF_ID, nimbleGFF_OligoID, norm_ID, norm_OligoID\n&quot; unless
+ ( defined $rv);</pre>
+<pre>
+    $sth = $self-&gt;{dbh}-&gt;prepare($rv) or die $self-&gt;{dbh}-&gt;errstr();
+    $rv = $sth-&gt;execute() or die $sth-&gt;errstr();
+    print &quot;\t $rv entries\n&quot;;
+    $sth-&gt;bind_columns(\$id, \$value);
+    while ( $sth-&gt;fetch()){
+       $return -&gt; {$id} = $value;
+    }
+    return $return, $rv;
+}</pre>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#selectid_byhybinfo">SelectID_ByHybInfo in the database::hybInfoDB manpage</a></p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>true if more than 1000 values are stored in the database ore false if less than 1000 values are stored</p>
+<p>
+</p>
+<h2><a name="getinfoid">GetInfoID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#selectid_byhybinfo">SelectID_ByHybInfo in the ::database::hybInfoDB manpage</a></p>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/hybInfoDB.html#selectid_byhybinfo">SelectID_ByHybInfo in the database::hybInfoDB manpage</a></p>
+
+</body>
+
+</html>

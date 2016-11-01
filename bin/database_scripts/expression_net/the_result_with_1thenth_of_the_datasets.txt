@@ -1,0 +1,2 @@
+gene1	correlates with the genes	and seams to have this influence on T2D
+02. Mrz	HMGN2 	0

@@ -1,0 +1,29 @@
+ NEEDED values:
+ -materialsTable_company
+       the company you bought the product from
+ -materialsTable_name
+       the common name for this compound
+ -materialsTable_OrderNumber
+       the order number to for this product
+ -materialsTable_LotNumber
+       the lot number to for this product sample
+ -materialsTable_type
+       the type of the compound (e.g. antibody, chemical, ...)
+ -materialsTable_orderDate
+       the date you ordered/recieved this compound
+ -materialsTable_description
+       some further description
+ LINKAGE variables:
+ -materialsTable_storage_id
+       the id of the storage of this compound
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -storage_table_building
+          the building the storgae is placed in
+    -storage_table_floor
+          the floor the storage is located
+    -storage_table_room
+          the room of the storage
+    -storage_table_description
+          a description of the storage (e.g. small white fridge)
+materialsTable_company;materialsTable_name;materialsTable_OrderNumber;materialsTable_LotNumber;materialsTable_type;materialsTable_orderDate;materialsTable_storage_id;storage_table_building;storage_table_floor;storage_table_room;storage_table_description;materialsTable_description;

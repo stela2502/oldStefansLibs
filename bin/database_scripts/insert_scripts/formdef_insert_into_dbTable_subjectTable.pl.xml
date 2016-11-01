@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!-- $Id: table_script_generator.pm,v 1.1.2.22 2011/03/09 14:57:55 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>subjectTable.identifier</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="an unique identifier for that individual" spancontent="?">identifier</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>subjectTable.organism_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="this value can be recieved using the variable organism together with the data_handler organism" spancontent="?">organism_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, organism_tag FROM organism"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="organism_tag"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>subjectTable.project_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the projects table" spancontent="?">project_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, name FROM projects"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="name"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

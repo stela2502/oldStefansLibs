@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/hybInfoDB.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_value">retrun value</a></li>
+		</ul>
+
+		<li><a href="#getinfoid_forhybtype">GetInfoID_forHybType</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#getinfoids_forhybtype">GetInfoIDs_forHybType</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#selecthybinfo_byid">SelectHybInfo_ByID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#selectid_byhybinfo">SelectID_ByHybInfo</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>database::designDB</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table HybInfo where all the different hybridization descriptions are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/antibodyDB.html">the database::antibodyDB manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/cellTypeDB.html">the database::cellTypeDB manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html">the database::designDB manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#getinfoid_forhybtype">GetInfoID_forHybType</a></p>
+<p><a href="#getinfoids_forhybtype">GetInfoIDs_forHybType</a></p>
+<p><a href="#selecthybinfo_byid">SelectHybInfo_ByID</a></p>
+<p><a href="#selectid_byhybinfo">SelectID_ByHybInfo</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class hybInfoDB</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the hybridization information foreach array hybridization used.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the NimbleGene Array Id</p>
+<p>[1]: the DNA labeling dye (cy3 or cy5) or the antibody specificity string</p>
+<p>
+</p>
+<h3><a name="retrun_value">retrun value</a></h3>
+<p>true if the hybridization is found in the table or false if it is not found</p>
+<p>
+</p>
+<h2><a name="getinfoid_forhybtype">GetInfoID_forHybType</a></h2>
+<p>Each array hybridization contains two diferent DNA samples. Each of these samples has its own hybridization id, but
+this method returns only one of these two.
+Use this method if you need
+only one id ,for example to store the enrichment factors for one 'ChIP on chip' experiment.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>See <a href="#getinfoids_forhybtype">GetInfoIDs_forHybType</a></p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the internal table line id for this specific habridization</p>
+<p>
+</p>
+<h2><a name="getinfoids_forhybtype">GetInfoIDs_forHybType</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the antibody string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/antibodyDB.html#selectid_byspecificity">SelectId_BySpecificity in the database::antibodyDB manpage</a></p>
+<p>[1]: the celltype string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/cellTypeDB.html#selectid_bycelltype">SelectID_ByCellType in the database::cellTypeDB manpage</a></p>
+<p>[2]: the organism string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/cellTypeDB.html#selectid_bycelltype">SelectID_ByCellType in the database::cellTypeDB manpage</a></p>
+<p>[3]: the design string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the database::designDB manpage</a></p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the reference to a array containing the HybInfo table line id's matching to the search parameters</p>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the NimbleGene id</p>
+<p>[1]: the DNA labeling marker (cy3 or cy5)</p>
+<p>[2]: the antibody specificity as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/antibodyDB.html#selectid_byspecificity">SelectId_BySpecificity in the database::antibodyDB manpage</a></p>
+<p>[3]: the celltype as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/cellTypeDB.html#selectid_bycelltype">SelectID_ByCellType in the database::cellTypeDB manpage</a></p>
+<p>[4]: the organism string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/cellTypeDB.html#selectid_bycelltype">SelectID_ByCellType in the database::cellTypeDB manpage</a></p>
+<p>[5]: the template type (experimental or input) as defined in the NimbleGene SampleKey.txt file</p>
+<p>[6]: the design string as accepted by <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the database::designDB manpage</a></p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>true if the array hybridization was found in the table after insertion, false if not</p>
+<p>
+</p>
+<h2><a name="selecthybinfo_byid">SelectHybInfo_ByID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the HybInfo table line id</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>a hashref with the sturcture {ID =&gt; the intername HybInfo table line id, 
+NimbleGen_Id =&gt; the NimbleGene 'Chip on chip' experiment id, Marker =&gt; the DNA labeling color (cy3 or cy5), 
+TemplateType =&gt; the template type as defined in the NimbleGene SampleKey.txt file, 
+Celltype_ID =&gt; as returned from <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/cellTypeDB.html#selectid_bycelltype">SelectID_ByCellType in the database::cellTypeDB manpage</a>, 
+Antibody_ID =&gt; as returned from <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/antibodyDB.html#selectid_byspecificity">SelectId_BySpecificity in the database::antibodyDB manpage</a>,
+ArrayDesignId =&gt; as returned from <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/database/designDB.html#selectid_byarraydesignstring">SelectId_ByArrayDesignString in the database::designDB manpage</a> }
+=cut</p>
+<p>sub SelectHybInfo_ByID {
+    my ( $self, $ID ) = @_;
+#    print ``SelectHybInfo_ByID $ID\n'';
+    return $self-&gt;{usedData_byID}-&gt;{$ID}
+      if ( defined $self-&gt;{usedData_byID}-&gt;{$ID} );
+    if ( $self-&gt;<code>DataExists($ID)</code> ) {
+        return $self-&gt;{usedData_byID}-&gt;{$ID};
+    }
+    return undef;
+}</p>
+<p>
+</p>
+<h2><a name="selectid_byhybinfo">SelectID_ByHybInfo</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>See <em>DataExists,``DataExists''</em></p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the internal HybInfo table line id for the specified hybridization</p>
+
+</body>
+
+</html>

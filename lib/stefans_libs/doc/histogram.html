@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/histogram.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#creategff">createGFF</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+		</ul>
+
+		<li><a href="#adddataarray">AddDataArray</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::histogram</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table Design where all the different design descriptions are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#adddataarray">AddDataArray</a></p>
+<p><a href="#creategff">createGFF</a></p>
+<p><a href="#writehistogram">writeHistogram</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class designDB</p>
+<p>
+</p>
+<h2><a name="creategff">createGFF</a></h2>
+<p>This method is ment to calculate the log( data1 / data2 ).</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: reference to the first oligo hash</p>
+<p>[1]: reference to the second oligo hash</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>Calculates the log( $data1-&gt;{$key} / $data2-&gt;{$key} ). Therefor the two data hashes atributes[0] and atributes[1]
+have to use the same keys!</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>a reference to a array that contains the calculated values. The keys are lost!</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: output filename</p>
+<p>[0]: histogram data as returned by <a href="#adddataarray">AddDataArray</a>.</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>Save the histogram data to atributes[0] in the format 'center of data bin'&lt;TAB&gt;'value of data bin'.</p>
+<p>
+</p>
+<h2><a name="adddataarray">AddDataArray</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: referece of a array containing the numeric data values</p>
+<p>[1]: the spread modificator of the data bins.</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>The data values are sorted in data bins. The default bin width is 1. 
+Use atributes[1] to modify this bin width ( binWidth = defaultBinWidth * atributes[1] ).</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>a reference of a hash with the structure { center of data bin -&gt; sum of data values }
+=cut</p>
+<p>sub AddDataArray {
+    my ( $self, $data, $spread ) = @_;</p>
+<pre>
+    my ( $value, $hash, $scaled );</pre>
+<pre>
+    $spread = 1 unless ( defined $spread );
+    $self-&gt;{spread} = $spread;
+    print &quot;AddDataArray Spread of data = $spread\n&quot;;
+    foreach $value (@$data) {
+        next unless ( defined $value );
+        $value = $spread * $value;
+        $value + 0.5;
+        $value = $value - 1 if ( $value &lt; 0 );
+        $value = int($value);</pre>
+<pre>
+        $value = ($value *2 + 1) / 2;</pre>
+<pre>
+        $value = $value / $spread;
+        $hash-&gt;{$value} = 0 unless ( defined $hash-&gt;{$value} );
+        $hash-&gt;{$value}++;
+    }
+    $value = @$data;
+    print &quot;$value data points used\n&quot;;
+    $self-&gt;{data} = $hash;
+    return $hash;
+}</pre>
+<p>1;</p>
+
+</body>
+
+</html>

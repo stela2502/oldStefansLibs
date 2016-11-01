@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_genomeDB.pl.xml,v 1.1.2.2 2009/08/26 14:35:33 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>genomeDB_version</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the version of the genome information" spancontent="?">version</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>genomeDB_organism_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="this could either be a organism_id or it should be undefined and the tag 'organism' results in an ID" spancontent="?">organism_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, organism_tag FROM organism"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="organism_tag"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

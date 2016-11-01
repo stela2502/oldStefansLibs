@@ -1,0 +1,8 @@
+ NEEDED values:
+ -nucleotide_array_identifier
+       a identifier for this particular array design
+ -nucleotide_array_manufacturer
+       the manufacturer of that array ->only (\"nimblegene\") is supported
+ -nucleotide_array_array_type
+       the name of the array type (\"ChIP on chip\")
+nucleotide_array_identifier;nucleotide_array_manufacturer;nucleotide_array_array_type;

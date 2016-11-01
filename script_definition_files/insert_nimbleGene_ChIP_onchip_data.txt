@@ -1,0 +1,37 @@
+executable_name=insert_NimbleGene_Chip_on_chip_data
+data_handler_class=array_dataset
+function_to_call=AddDataset
+description=Add a NimbleGene array Dataset to the database
+##
+##
+includeStrings
+## the string you would use to include a lib like
+## use stefans_libs::root;
+use stefans_libs::database::array_dataset;
+finish includeStrings
+##
+##
+variables
+## the variable definitions lik
+## <variable_name>;<variable_type>;<use_as_file_string>;<NOT_needed>;<description>\n".
+##
+## <variable_name> = a string WITHOUT spaces
+## <variable_type> = one of ( VARCHAR(<integer>), TEXT, FILE )
+## <use_as_file_string> = 1||0
+## <NOT_needed> = either 1 = NOT needed or 0 = needed
+## <description> = a sring that describes the variable (no \" or ')
+task;hidden;0;1; 
+access_right;DB;0;0;please select the type of the access type - not used at the moment
+scientist_id;DB;0,0;please selct the scientis that created the dataset
+array_id;DB;0,0;please select the array library for that dataset
+data_id;DB;0;0;please selct the datatype you want to upload
+finish variables
+##
+##
+values
+task=add nimblegene Chip on chip data
+access_right=stefans_libs::database::access_rights;access_rights
+scientist_id=stefans_libs::database::scientistTable;scientistTable
+array_id=stefans_libs::database::nucleotide_array;nucleotide_array
+data=stefans_libs::database::datatypes;datatypes
+finish values

@@ -1,0 +1,25 @@
+ NEEDED values:
+ -experiment_name
+       The name for the experiment. This name has to be uniwue over all the emperiments.
+ -experiment_description
+       a informative description of the experiment - please!
+ -experiment_aim
+       the aim of this experiment
+ -experiment_conclusion
+       the final conclusion that can be drawn from this experiment
+ -experiment_PMID
+       
+ LINKAGE variables:
+ -experiment_project_id
+       the id of the project the experiment belongs to
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -project_table_name
+          the name of the project
+ -experiment_hypothesis_id
+       the id of the main hypothesis of this experiment
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -hypothesis_table_hypothesis_name
+          a name for the hypothesis unique in the whole database
+experiment_name;experiment_project_id;project_table_name;experiment_hypothesis_id;hypothesis_table_hypothesis_name;experiment_description;experiment_aim;experiment_conclusion;experiment_PMID;

@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/cellTypeDB.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#getallcellinfosbyid">GetAllCellInfosByID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#selectcelltype_byid">SelectCellType_ByID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#selectid_bycelltype">SelectID_ByCellType</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>::database::cellTypeDB</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table Cells where all celltype informations are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#getallcellinfosbyid">GetAllCellInfosByID</a></p>
+<p><a href="#selectcelltype_byid">SelectCellType_ByID</a></p>
+<p><a href="#selectid_bycelltype">SelectID_ByCellType</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class array_GFF</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the used celltypes information.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the cellType as string or if [1] is undefined the celltype id</p>
+<p>[1]: the organism as string or the undefined value</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>true if the celltype was defined or false if it was not defined.</p>
+<p>
+</p>
+<h2><a name="getallcellinfosbyid">GetAllCellInfosByID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>a reference to a hash of hashes with the structure { tableLineID =&gt; { ID =&gt; tableLineID ,Organism =&gt; organism string ,Celltype = celltype string}}</p>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the celltype string</p>
+<p>[1]: the organism string</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>true if the data exists after the insert</p>
+<p>
+</p>
+<h2><a name="selectcelltype_byid">SelectCellType_ByID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the celltype id (internal table line id)</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>a reference to a hash with the structure { cellType =&gt; celltype string, organism =&gt; organism string }</p>
+<p>
+</p>
+<h2><a name="selectid_bycelltype">SelectID_ByCellType</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the celltype string</p>
+<p>[1]: the organism string</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the celltype internal table line id or the undefined value</p>
+
+</body>
+
+</html>

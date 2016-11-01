@@ -1,0 +1,6 @@
+ NEEDED values:
+ -configuration_tag
+       a unique tag, that is used to get the value
+ -configuration_value
+       the vale of that configuration
+configuration_tag;configuration_value;

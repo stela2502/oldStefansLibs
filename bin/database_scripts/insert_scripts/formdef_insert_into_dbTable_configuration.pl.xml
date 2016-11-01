@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_configuration.pl.xml,v 1.1.2.1 2009/07/24 15:47:34 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>configuration_tag</name>
+        <label spanclass="navibutton" javaonclickalert="a unique tag, that is used to get the value" spancontent="?">configuration_tag</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item label="class" value="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>configuration_value</name>
+        <label spanclass="navibutton" javaonclickalert="the vale of that configuration" spancontent="?">configuration_value</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item label="class" value="formtext"></item>
+          </attribs>
+</formitem>
+ </formsettings>
+</settings>

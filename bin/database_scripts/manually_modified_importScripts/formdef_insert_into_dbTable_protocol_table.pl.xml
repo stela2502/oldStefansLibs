@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_protocol_table.pl.xml,v 1.1.2.1 2009/09/15 09:43:11 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>protocol_table_name</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the name of the protocol" spancontent="?">name</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>protocol_table_description</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a (long) description of the protocol" spancontent="?">description</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>protocol_table_working_copy</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="The working copy of the protocol - it should be possible to print that" spancontent="?">working_copy</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>protocol_table_original_protocol_description_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the file" spancontent="?">original_protocol_description_id</label>
+       <datasource type="DB" execq="SELECT id, file FROM external_files"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="file"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>file</type>
+        <name>external_files_file</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the name of the file" spancontent="?">file</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>external_files_filetype</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the filetype (one of picture, text_document or data_file" spancontent="?">filetype</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>protocol_table_PMID</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="An optional link to pubmed - if the protocol was published" spancontent="?">PMID</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

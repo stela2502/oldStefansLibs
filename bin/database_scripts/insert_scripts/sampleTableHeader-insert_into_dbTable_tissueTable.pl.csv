@@ -1,0 +1,17 @@
+ NEEDED values:
+ -tissueTable_name
+       the name of the tissue type
+ LINKAGE variables:
+ -tissueTable_organism_id
+       the link to the organism table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -organismDB_organism_tag
+          the organism tag as used by NCBI
+ -tissueTable_extraction_protocol_id
+       the extraction protocol for this tissue type
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -protocol_table_name
+          the name of the protocol
+tissueTable_organism_id;organismDB_organism_tag;tissueTable_name;tissueTable_extraction_protocol_id;protocol_table_name;

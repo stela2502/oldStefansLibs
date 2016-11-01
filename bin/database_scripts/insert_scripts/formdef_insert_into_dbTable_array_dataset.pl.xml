@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_array_dataset.pl.xml,v 1.1.2.1.2.2 2009/08/26 14:35:33 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>radio</type>
+        <name>array_dataset_scientist_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a link to the scientists table" spancontent="?">scientist_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, name, workgroup, position FROM scientists"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="name,workgroup,position"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>array_dataset_sample_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a link to the samples table" spancontent="?">sample_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, sample_lable, subject_id, tissue_id FROM samples"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="sample_lable,subject_id,tissue_id"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>array_dataset_access_right</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a access right (scientis, group, all)" spancontent="?">access_right</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>array_dataset_array_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a link to the nucleotides array" spancontent="?">array_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, identifier FROM nucleotide_array_libs"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="identifier"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>array_dataset_experiment_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a link to the experiment table" spancontent="?">experiment_id</label>
+       <datasource type="DB" execq="SELECT id, name FROM experiments"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="name"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>array_dataset_array_type</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the same as in nucleotide_array_libs.array_type" spancontent="?">array_type</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

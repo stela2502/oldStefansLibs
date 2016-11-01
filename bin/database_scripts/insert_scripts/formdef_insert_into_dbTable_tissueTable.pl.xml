@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_tissueTable.pl.xml,v 1.1.2.2 2009/08/26 14:35:33 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>radio</type>
+        <name>tissueTable_organism_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the organism table" spancontent="?">organism_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, organism_tag FROM organism"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="organism_tag"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>tissueTable_name</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the name of the tissue type" spancontent="?">name</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>tissueTable_extraction_protocol_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the extraction protocol for this tissue type" spancontent="?">extraction_protocol_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, name FROM protocols"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="name"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

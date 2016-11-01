@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_register_Affymetrix_CEL_file.pl.xml,v 1.1.2.1 2010/01/08 14:58:28 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>radio</type>
+        <name>CEL_file_storage_cel_file_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the id of the stored file" spancontent="?">cel_file_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, file FROM external_files"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="file"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>file</type>
+        <name>external_files_file</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the name of the file" spancontent="?">file</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>external_files_filetype</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the filetype (one of picture, text_document or data_file)" spancontent="?">filetype</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>CEL_file_storage_sample_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the link to the sample information" spancontent="?">sample_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, sample_lable, subject_id, tissue_id FROM samples"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="sample_lable,subject_id,tissue_id"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>CEL_file_storage_array_type</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a string that identifies the AffymetrixAffay design" spancontent="?">array_type</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

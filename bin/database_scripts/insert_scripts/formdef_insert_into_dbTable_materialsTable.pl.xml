@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_materialsTable.pl.xml,v 1.1.2.1 2009/10/05 11:56:26 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>materialsTable_company</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the company you bought the product from" spancontent="?">company</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>materialsTable_name</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the common name for this compound" spancontent="?">name</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>materialsTable_OrderNumber</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the order number to for this product" spancontent="?">OrderNumber</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>materialsTable_LotNumber</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the lot number to for this product sample" spancontent="?">LotNumber</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>materialsTable_type</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the type of the compound (e.g. antibody, chemical, ...)" spancontent="?">type</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>materialsTable_storage_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the id of the storage of this compound" spancontent="?">storage_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, building, floor, room, description FROM storage_table"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="building,floor,room,description"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>materialsTable_description</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="some further description" spancontent="?">description</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

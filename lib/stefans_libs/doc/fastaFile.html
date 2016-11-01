@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/fastaFile.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">depends on</a></li>
+		<li><a href="#provides">provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#addfile">AddFile</a></li>
+		<li><a href="#get_subseq">Get_SubSeq</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#writeasfasta">WriteAsFasta</a></li>
+		<li><a href="#name">Name</a></li>
+		<li><a href="#seq">Seq</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::fastaFile</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>The class fastaFile is used to handle fasta formated sequence files</p>
+<p>
+</p>
+<h2><a name="depends_on">depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">provides</a></h2>
+<p><a href="#addfile">AddFile</a></p>
+<p><a href="#get_subseq">Get_SubSeq</a></p>
+<p><a href="#writeasfasta">WriteAsFasta</a></p>
+<p><a href="#name">Name</a></p>
+<p><a href="#seq">Seq</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>new returns a new object reference of the class fastaFile.</p>
+<p>If a valid path to a fasta formated sequence file is ommited as argument this sequence file is read
+using the method <a href="#addfile">AddFile</a>.</p>
+<p>
+</p>
+<h2><a name="addfile">AddFile</a></h2>
+<p>AddFile is used to import a fasta formated txt file.</p>
+<p>[0]: absolute path to the fasta formates sequence file</p>
+<p>1 if success</p>
+<p>
+</p>
+<h2><a name="get_subseq">Get_SubSeq</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: position in basepairs where the substring of the seqiuence should start</p>
+<p>[1]: position in basepairs where the substring of the seqiuence should end</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>the substring of the sequence or the whole sequence if start and end where not defined</p>
+<p>
+</p>
+<h2><a name="writeasfasta">WriteAsFasta</a></h2>
+<p>WriteAsFasta wirtes the internal sequence representation in fasta format.</p>
+<p>[0]: the absolute filename to write the sequence to.</p>
+<p>[1]: position in basepairs where the sequence should start</p>
+<p>[2]: position in basepairs where the sequence should end</p>
+<p>
+</p>
+<h2><a name="name">Name</a></h2>
+<p>Name is a wrapper around the fasta idetification string.</p>
+<p>It returns the fasta idetification string if it is defined.</p>
+<p>
+</p>
+<h2><a name="seq">Seq</a></h2>
+<p>Name is a wrapper around the fasta seqeunce.</p>
+<p>It returns the fasta seqeunce if it is defined.</p>
+
+</body>
+
+</html>

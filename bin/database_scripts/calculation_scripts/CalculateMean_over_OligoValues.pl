@@ -1,0 +1,457 @@
+#! /usr/bin/perl -w
+
+#  Copyright (C) 2008 Stefan Lang
+
+#  This program is free software; you can redistribute it
+#  and/or modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation;
+#  either version 3 of the License, or (at your option) any later version.
+
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+=head1 insert_into_dbTable_array_calculation_results.pl
+
+INFO_STR
+
+To get further help use 'insert_into_dbTable_array_calculation_results.pl -help' at the comman line.
+
+=cut
+
+use Getopt::Long;
+use stefans_libs::database::array_calculation_results;
+use stefans_libs::root;
+use Digest::MD5 qw(md5_hex);
+use stefans_libs::database::system_tables::workingTable;
+use stefans_libs::database::system_tables::loggingTable;
+use stefans_libs::database::system_tables::errorTable;
+use stefans_libs::database::nucleotide_array;
+use strict;
+use warnings;
+
+my $VERSION = "v1.0.0";
+
+my (
+	$help,
+	$debug,
+	$database_name,
+	$resorce_path,
+	$array_calculation_results_name,
+	$array_calculation_results_scientist_id,
+	$scientistTable_name,
+	$scientistTable_workgroup,
+	$scientistTable_position,
+	$array_calculation_results_work_description,
+	$array_calculation_results_program_name,
+	$array_calculation_results_program_version,
+	$array_calculation_results_access_right,
+	$array_calculation_results_array_id,
+	$nucleotide_array_identifier,
+	$array_calculation_results_experiment_id,
+	$experiment_name,
+	@array_dataset_ids
+);
+
+Getopt::Long::GetOptions(
+	"-array_calculation_results_name=s" => \$array_calculation_results_name,
+	"-array_calculation_results_scientist_id=s" =>
+	  \$array_calculation_results_scientist_id,
+	"-scientistTable_name=s"      => \$scientistTable_name,
+	"-scientistTable_workgroup=s" => \$scientistTable_workgroup,
+	"-scientistTable_position=s"  => \$scientistTable_position,
+	"-array_calculation_results_access_right=s" =>
+	  \$array_calculation_results_access_right,
+	"-array_calculation_results_array_id=s" =>
+	  \$array_calculation_results_array_id,
+	"-nucleotide_array_identifier=s" => \$nucleotide_array_identifier,
+	"-array_calculation_results_experiment_id=s" =>
+	  \$array_calculation_results_experiment_id,
+	"-experiment_name=s"      => \$experiment_name,
+	'-array_dataset_ids=s{,}' => \@array_dataset_ids,
+	"-jobid=s"                => \$resorce_path,
+	"-database_name=s"        => \$database_name,
+	"-help"                   => \$help,
+	"-debug"                  => \$debug
+) or die( helpString() );
+
+if ($help) {
+	print helpString();
+	exit;
+}
+
+if ( defined $resorce_path ) {
+
+	if ( -f "$resorce_path/array_calculation_results_name.dta" ) {
+		open( IN, "<$resorce_path/array_calculation_results_name.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$array_calculation_results_name = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/array_dataset_ids.dta" ) {
+		open( IN, "<$resorce_path/array_dataset_ids.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			push( @array_dataset_ids, $_ );
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/array_calculation_results_scientist_id.dta" ) {
+		open( IN, "<$resorce_path/array_calculation_results_scientist_id.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$array_calculation_results_scientist_id = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/scientistTable_name.dta" ) {
+		open( IN, "<$resorce_path/scientistTable_name.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$scientistTable_name = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/scientistTable_workgroup.dta" ) {
+		open( IN, "<$resorce_path/scientistTable_workgroup.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$scientistTable_workgroup = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/scientistTable_position.dta" ) {
+		open( IN, "<$resorce_path/scientistTable_position.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$scientistTable_position = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/array_calculation_results_access_right.dta" ) {
+		open( IN, "<$resorce_path/array_calculation_results_access_right.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$array_calculation_results_access_right = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/array_calculation_results_array_id.dta" ) {
+		open( IN, "<$resorce_path/array_calculation_results_array_id.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$array_calculation_results_array_id = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/nucleotide_array_identifier.dta" ) {
+		open( IN, "<$resorce_path/nucleotide_array_identifier.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$nucleotide_array_identifier = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/array_calculation_results_experiment_id.dta" ) {
+		open( IN,
+			"<$resorce_path/array_calculation_results_experiment_id.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$array_calculation_results_experiment_id = $_;
+			last;
+		}
+		close(IN);
+	}
+	if ( -f "$resorce_path/experiment_name.dta" ) {
+		open( IN, "<$resorce_path/experiment_name.dta" );
+		foreach (<IN>) {
+			chomp($_);
+			$experiment_name = $_;
+			last;
+		}
+		close(IN);
+	}
+
+}
+
+my @progName = split ( "/",$0);
+
+$array_calculation_results_work_description =
+'calculation of mean and stddev over the oligo values described by the array_dataset.ids ('
+  . join( ", ", @array_dataset_ids ) . ')';
+$array_calculation_results_program_name    = @progName[@progName-1];
+$array_calculation_results_program_version = $VERSION;
+
+my $dataset = {
+	'name'         => $array_calculation_results_name,
+	'scientist_id' => $array_calculation_results_scientist_id,
+	'scientist'    => {
+		'id'        => $array_calculation_results_scientist_id,
+		'name'      => $scientistTable_name,
+		'workgroup' => $scientistTable_workgroup,
+		'position'  => $scientistTable_position,
+	},
+	'work_description' => $array_calculation_results_work_description,
+	'program_name'     => $array_calculation_results_program_name,
+	'program_version'  => $array_calculation_results_program_version,
+	'access_right'     => $array_calculation_results_access_right,
+	'array_id'         => $array_calculation_results_array_id,
+	'array'            => {
+		'id'         => $array_calculation_results_array_id,
+		'identifier' => $nucleotide_array_identifier,
+	},
+	'experiment_id' => $array_calculation_results_experiment_id,
+	'experiment'    => {
+		'id'   => $array_calculation_results_experiment_id,
+		'name' => $experiment_name,
+	},
+};
+
+my ( $error, $dataStr ) = check_dataset($dataset);
+
+if ( $error =~ m/\w/ ) {
+	print helpString($error);
+	exit;
+}
+
+my $array_calculation_results = array_calculation_results->new($database_name);
+
+## now we set up the logging functions....
+
+my ( $workingTable, $loggingTable, $workLoad, $loggingEntries, $errorTable );
+
+$workingTable = workingTable->new( $database_name, $debug );
+$loggingTable = loggingTable->new( $database_name, $debug );
+$errorTable = errorTable->new( $database_name, $debug );
+
+## and add a working entry
+
+
+my $rv = $workingTable->set_workload(
+	{
+		'PID'         => $$,
+		'programID'   => @progName[@progName-1],
+		'description' => "the dataset: $dataStr"
+	}
+);
+
+unless ( defined $rv ) {
+	print
+"OOPS - we have a stuck process that wants to do the task - please mention that to your database administrator!\n";
+	exit;
+}
+
+$workLoad = $workingTable->select_workloads_for_PID($$);
+$loggingEntries =
+  $loggingTable->select_logs_for_description("the dataset: $dataStr");
+unless ( defined @$loggingEntries[0] ) {
+	$dataset->{'work_description'} .= $dataStr;
+
+	## now we need to read the data from the tables.
+	## 1. get me the oligoDB for the array_design
+	my $nucleotide_array_lib = nucleotide_array->new( $database_name, $debug );
+	my $oligoDB =
+	  $nucleotide_array_lib->Get_OligoDB_for_ID( $dataset->{'array_id'} );
+	## 2. get the table names for the array_dataset ids
+	my $sql = "Select table_baseString from array_datasets where id IN ("
+	  . join( ", ", @array_dataset_ids ) . ")";
+	my $sth = $workingTable->{'dbh'}->prepare($sql);
+	my $rv  = $sth->execute();
+	$rv = $sth->fetchall_arrayref();
+
+	## 3. create the oligo_array_values entries inside the oligoDB
+	push(
+		@{ $oligoDB->{'table_definition'}->{'variables'} },
+		{
+			'name'         => 'id',
+			'data_handler' => 'oligo_array_values',
+			'type'         => 'INTEGER',
+			'description'  => "this is an artefact of @progName[@progName-1]",
+			'NULL'         => 0
+		}
+	);
+	$oligoDB->{'data_handler'}->{'oligo_array_values'} = [];
+	foreach my $dataRow (@$rv) {
+		my $oligo_array_values =
+		  oligo_array_values->new( $workingTable->{'dbh'}, $debug );
+		$oligo_array_values->{'_tableName'} = @$dataRow[0];
+		push(
+			@{ $oligoDB->{'data_handler'}->{'oligo_array_values'} },
+			$oligo_array_values
+		);
+	}
+
+	$sql = $oligoDB->create_SQL_statement(
+		{
+			'search_columns' => [ 'oligo_name', 'oligo_array_values.value' ]
+		}
+	);
+	print "we select the data values using this sql statement '$sql;'\n";
+	my ( $root, $id, $mean, $var, $stddev, $data );
+	
+	$root = root ->new();
+	## 4. get the data
+	$sth = $workingTable->{'dbh'}->prepare($sql);
+	$rv = $sth->execute();
+	$rv = $sth ->fetchall_arrayref();
+	foreach my $dataRow (@$rv) {
+		$id = shift ( @$dataRow);
+		( $mean, $var, $stddev) = $root->getStandardDeviation($dataRow);
+		$data->{$id} = [ $mean, $stddev];
+		if ( $debug ){
+			print " $id -> mean & stddev(".join( ", ",@$dataRow).") = $mean; $stddev\n";
+		}
+	}
+	exit if ( $debug );
+	$dataset->{'data'} = $data;
+	$dataset->{'oligoDB'} = $oligoDB;
+	
+	$array_calculation_results->AddDataset($dataset);
+
+	$id =
+	  $array_calculation_results->_return_unique_ID_for_dataset($dataset);
+
+## work is finfished - we add a log entry and remove the workload entry!
+	if ( defined $id && $id > 0 ) {
+		$loggingTable->set_log(
+			{
+				'start_time'  => @$workLoad[0]->{'timeStamp'},
+				'programID'   => @$workLoad[0]->{'programID'},
+				'description' => @$workLoad[0]->{'description'}
+			}
+		);
+	}
+	else {
+		warn
+"insert_into_dbTable_array_calculation_results.pl -> we could not add the data $dataStr\n";
+		$errorTable->AddDataset(
+			{
+				'name' => 'insert_into_dbTable_array_calculation_results.pl',
+				'description' => $dataStr
+			}
+		);
+	}
+
+}
+else {
+	print 'OOPS - the dataset was already present in the database!
+';
+}
+
+$workingTable->delete_workload_for_PID($$);
+
+sub check_dataset {
+	my ( $dataset, $variable_name ) = @_;
+	my $error   = '';
+	my $dataStr = '';
+	my ( $temp, $temp_data );
+	foreach my $value_tag ( keys %$dataset ) {
+		next if ( $value_tag eq "array_calculation_results_work_description" );
+		$dataStr .= "-$value_tag => $dataset->{$value_tag}, "
+		  if ( defined $dataset->{$value_tag}
+			&& !( ref( $dataset->{$value_tag} ) eq "HASH" ) );
+
+		#next if ( ref( $dataset->{$value_tag} ) eq "HASH" );
+		next if ( $value_tag eq "id" );
+		unless ( defined $dataset->{$value_tag} ) {
+			$temp = $value_tag;
+			$temp =~ s/_id//;
+			if ( ref( $dataset->{$temp} ) eq "HASH" ) {
+				( $temp, $temp_data ) = check_dataset( $dataset->{$temp} );
+				$dataStr .= $temp_data;
+				$error .=
+"we miss the data for value $value_tag and the downstream table:\n"
+				  . $temp
+				  if ( $temp =~ m/\w/ );
+			}
+			else {
+				$error .= "we miss the data for value $value_tag\n";
+			}
+		}
+	}
+
+	return ( $error, $dataStr );
+}
+
+sub helpString {
+	my $errorMessage = shift;
+	$errorMessage = ' ' unless ( defined $errorMessage );
+
+	return "
+
+$errorMessage
+
+    command line switches for insert_into_dbTable_array_calculation_results.pl
+ 
+    this script takes either a <TAB> separated table_file 
+    containing all neccessary variable names as table header (-table_file) 
+    or a list values as descibed:
+
+    There are three possible variable types:
+    1. the NEEDED variables 
+       those have to be defined to add to the table
+    2. the OPTIONAL values
+       those might be ommitted
+    3. the LINKAGE values
+       those might drastically reduce the amount of variables needed
+       as the render the downstream variables obsolete 
+       if those downstream values are already defined in the database
+
+    The level of indention indicates the stucture:
+    the first level is needed -
+        the second level is obsolete if you have added all LINKAGE 
+        values of the upper level. Each LINKAGE value skipps another set of variables.
+    This info applies for all other indention levels.
+    
+ command line switches for EXECUTABLE
+
+ NEEDED values:
+ -array_calculation_results_name
+       a name for this calculation - has to be unique with the version of the program
+ -array_dataset_ids
+       the ids of the dataset we should include into the evaluation
+ -array_calculation_results_access_right
+       a access right (scientis, group, all)
+ LINKAGE variables:
+ -array_calculation_results_scientist_id
+       a link to the scientists table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -scientistTable_name
+          the name of the scientif (you)
+    -scientistTable_workgroup
+          the name of your group leader
+    -scientistTable_position
+          your position (PhD student, postdoc, .. )
+ -array_calculation_results_array_id
+       a link to the nucleotides array
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -nucleotide_array_identifier
+          a identifier for this particular array design
+ -array_calculation_results_experiment_id
+       a link to the experiment table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -experiment_name
+          The name for the experiment. This name has to be uniwue over all the emperiments.
+
+   -help           :print this help
+   -debug          :verbose output
+
+";
+}

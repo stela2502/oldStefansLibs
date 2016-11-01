@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<data>
+<version>version 1</version>
+<author>Johan Hultman</author>
+<description>handling registrations of new protocols</description>
+
+<!-- free = the application will update the system tables and then die,
+     locked = expects to get resultfiles to handle after the applicaion is done-->
+<applicationwill>free</applicationwill>
+
+<applicationtype>php</applicationtype>
+<applicaionsettings></applicaionsettings>
+
+<arguments>
+  <item>*fullpath*</item>
+  <item>*jobid*</item>
+</arguments>
+
+<binpath>/usr/local/bin/</binpath>
+<bin>insert_into_dbTable_external_files.pl</bin>
+</data>

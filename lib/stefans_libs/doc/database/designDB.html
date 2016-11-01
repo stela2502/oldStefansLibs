@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/designDB.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#selectid_byarraydesignstring">SelectId_ByArrayDesignString</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#selectdesignfile_byid">SelectDesignFile_ById</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+		</ul>
+
+		<li><a href="#selectarraydesignstring_byid">SelectArrayDesignString_ById</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>::database::designDB</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table Design where all the different design descriptions are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#selectid_byarraydesignstring">SelectId_ByArrayDesignString</a></p>
+<p><a href="#selectdesignfile_byid">SelectDesignFile_ById</a></p>
+<p><a href="#selectarraydesignstring_byid">SelectArrayDesignString_ById</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class designDB</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the design information foreach design used.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: either the NimbleGene design string or the internal table line id</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>true if the desig is found in the database or false if it is not found</p>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: depricated integer value</p>
+<p>[1]: the NCBI genome build version</p>
+<p>[2]: the NimbleGene design string</p>
+<p>[3]: the median oligo density over 500 bp genomic DNA for this array design or the undefined value</p>
+<p>[4]: the absolute path to the NimbleGene array design file</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>true if data exists after the instertion, false if not</p>
+<p>
+</p>
+<h2><a name="selectid_byarraydesignstring">SelectId_ByArrayDesignString</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the NimbleGene array design string</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the internal table line id if the array design was foundin the database or the undefined value</p>
+<p>
+</p>
+<h2><a name="selectdesignfile_byid">SelectDesignFile_ById</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the design id (internal table line id)</p>
+<p>the absolute location of the array design file if the array table line was found in the database or the undefined value
+=cut</p>
+<p>sub SelectDesignFile_ById{
+    my ( $self, $ID) = @_;
+    return $self-&gt;{usedData_byID}-&gt;{$ID}-&gt;{DesignFile}
+       if ( $self-&gt;<code>DataExists($ID)</code> );
+    return undef;
+}</p>
+<p>
+</p>
+<h2><a name="selectarraydesignstring_byid">SelectArrayDesignString_ById</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]:  the design id (internal table line id)</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>the NimbleGene arrays design string or the undefined value</p>
+
+</body>
+
+</html>

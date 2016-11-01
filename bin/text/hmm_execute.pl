@@ -1,0 +1,34 @@
+#! /usr/bin/perl
+#  Copyright (C) 2008 Stefan Lang
+
+#  This program is free software; you can redistribute it 
+#  and/or modify it under the terms of the GNU General Public License 
+#  as published by the Free Software Foundation; 
+#  either version 3 of the License, or (at your option) any later version.
+
+#  This program is distributed in the hope that it will be useful, 
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of 
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+#  See the GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License 
+#  along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+use stefans_libs::statistics::HMM;
+use Getopt::Long;
+
+my ( $HMM, $antibody,$celltype,$organism,$designID, $what);
+my $HMM = HMM->new();
+
+Getopt::Long::GetOptions( 
+         'antibody=s' => \$antibody,
+         'celltype=s' => \$celltype,
+         'organism=s' => \$organism,
+         'designID=s' => \$designID,
+         'what=s' => \$what
+);
+
+$HMM->CalculateHMM({antibody => $antibody, celltype => $celltype, organism => $organism, designID => $designID, what => $what });
+
+print "$antibody, $celltype, $organism, $designID => Fertig!\n";
+return 1;

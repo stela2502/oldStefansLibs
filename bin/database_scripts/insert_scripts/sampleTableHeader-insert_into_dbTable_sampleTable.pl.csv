@@ -1,0 +1,47 @@
+ NEEDED values:
+ -sampleTable_sample_lable
+       the lable of the storage tubes
+ -sampleTable_name
+       some additional information, that you could use to add a tag to the sample
+ -sampleTable_initial_amount
+       the initial amount of purified sample material
+ -sampleTable_aliquots
+       how many aliquots are available
+ -sampleTable_extraction_date
+       the date of the sample extraction
+ LINKAGE variables:
+ -sampleTable_subject_id
+       the link to the subjects table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -subjectTable_identifier
+          an unique identifier for that individual
+ -sampleTable_storage_id
+       the link to the possible storage places
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -storage_table_building
+          the building the storgae is placed in
+    -storage_table_floor
+          the floor the storage is located
+    -storage_table_room
+          the room of the storage
+    -storage_table_description
+          a description of the storage (e.g. small white fridge)
+ -sampleTable_tissue_id
+       the link to the tissues table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -tissueTable_organism_id
+          the link to the organism table
+    -tissueTable_name
+          the name of the tissue type
+    -tissueTable_extraction_protocol_id
+          the extraction protocol for this tissue type
+ -sampleTable_extraction_protocol_id
+       the link to the protocols table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -protocol_table_name
+          the name of the protocol
+sampleTable_sample_lable;sampleTable_name;sampleTable_subject_id;subjectTable_identifier;sampleTable_storage_id;storage_table_building;storage_table_floor;storage_table_room;storage_table_description;sampleTable_initial_amount;sampleTable_tissue_id;tissueTable_organism_id;tissueTable_name;tissueTable_extraction_protocol_id;sampleTable_aliquots;sampleTable_extraction_protocol_id;protocol_table_name;sampleTable_extraction_date;

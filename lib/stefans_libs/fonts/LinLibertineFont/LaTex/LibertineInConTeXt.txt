@@ -1,0 +1,192 @@
+- 1 Rename fonts, removing the version numbers
+    - The extra '.'s give texfont some difficulties
+    % mv LinLibertine-0.6.4.ttf LinLibertine.ttf
+- 2 Extract the unicode-to-glyph mapping, using ttx/fonttools
+    - Yields a nice XML format, which can be repurposed for all sorts
+      of uses
+    % ttx -t cmap -t name LinLibertine.ttf
+    - You could do Italic, as well, but since it's a subset, you don't
+      really need to.
+- 3 Convert the ttx to a traditional encoding file, using the included
+  ttx2enc.xsl transform
+    - Do one per (populated) vector (group of 256 glyphs) that you want
+      to use. 
+    - The default is the 00xx vector. The vector parameter is passed
+      with no leading zeroes, and in lower-case hex.
+    - Give the encoding a name that ties it to the font family and is
+      lower-case.
+    % saxon -o linlibromuni00xx.enc LinLibertine.ttx ttx2enc.xsl
+    % saxon -o linlibromuni01xx.enc LinLibertine.ttx ttx2enc.xsl vector=1
+    % saxon -o linlibromuni20xx.enc LinLibertine.ttx ttx2enc.xsl vector=20
+    % saxon -o linlibromunifbxx.enc LinLibertine.ttx ttx2enc.xsl vector=fb
+    - (etc)
+- 4 Hand-modify the encoding files to yield the usual TeXish ligatures
+    - Insert the missing ligature targets into the 00 vector encoding.
+      The /.notdef's up to 0x9f are good for that use -- they're unused
+      by Unicode.
+    - Insert the appropriate ligkern statements somewhere in the
+      encoding.
+    - Consider replacing /quotesingle and /grave with /quoteright and
+      /quoteleft
+    - Here's a diff between the generated and hand-tweaked file:
+          % diff LinLibRomUni00xx.enc LinLibRomUni00xx-Liga.enc 
+          46c46
+          < /quotesingle % 0x27  APOSTROPHE 
+          ---
+          > /quotesingle % 0x27  APOSTROPHE % recommend change to /quoteright
+          103c103
+          < /grave % 0x60  GRAVE ACCENT 
+          ---
+          > /grave % 0x60  GRAVE ACCENT % recommend change to /quoteleft
+          158,166c158,166
+          < /.notdef % 0x97
+          < /.notdef % 0x98
+          < /.notdef % 0x99
+          < /.notdef % 0x9a
+          < /.notdef % 0x9b
+          < /.notdef % 0x9c
+          < /.notdef % 0x9d
+          < /.notdef % 0x9e
+          < /.notdef % 0x9f
+          ---
+          > /quotedblleft % /.notdef % 0x97
+          > /quotedblright % /.notdef % 0x98
+          > /ff % /.notdef % 0x99
+          > /fi % /.notdef % 0x9a
+          > /uniFB02 % /.notdef % 0x9b
+          > /uniFB03 % /.notdef % 0x9c
+          > /uniFB04 % /.notdef % 0x9d
+          > /endash % /.notdef % 0x9e
+          > /emdash % /.notdef % 0x9f
+          262a263,266
+          >   % LIGKERN hyphen hyphen =: endash ; endash hyphen =:
+          emdash ;
+          >   % LIGKERN f f =: ff ; f i =: fi ; f l =: uniFB02 ;
+          >   % LIGKERN ff i =: uniFB03 ; ff l =: uniFB04 ; 
+          >   % LIGKERN grave grave =: quotedblleft ; 
+          >   % LIBKERN quotesingle quotesingle =: quotedblright ;
+          
+    - The 20 vector may want similar treatment for doublequotes.
+    - The quotedown and exclamdown ligatures may be difficult because
+      their component parts are spread amongst different vectors.
+- 5 Install the two ttf files with a run of texfont for each of the
+  vectors
+    - You should use a recent version (e.g. 2.2) of texfont
+    % texfont --ma --in --ve=public --co=libertine --en=linlibromuni00xx
+    % texfont --ma --in --ve=public --co=libertine --en=linlibromuni01xx
+    % texfont --ma --in --ve=public --co=libertine --en=linlibromuni20xx
+    - (etc)
+- 6 Make sure the encoding files are placed somewhere in the search path
+  at some point.
+    - Keeping them in the current directory is good for debugging, but
+      you need to make sure the final versions are able to be found
+      when you leave that directory.
+    % cp linlibromuni*xx.enc $TEXMFFONTS/fonts/enc/
+- 7 At this point, the fonts are installed.
+    - ConTeXt support (Adam-style) requires a patch to some macros, a
+      new (fallback) typescript, a series of fontsynonyms, and some
+      simple calls to get going.
+- 8 Patch your cont-loc or cont-new:
+    - (or just include it in the test file!)
+      \unprotect
+      \def\utfunifontglyph#1%
+        {\xdef\unidiv{\number\utfdiv{#1}}%
+         \xdef\unimod{\number\utfmod{#1}}%
+         \ifnum#1<\utf@i
+           \char\unimod % \unicodeascii\unimod
+         \else\ifcase\utfunihashmode
+           \ifcsname\@@univector\unidiv\endcsname
+           \csname\doutfunihash{\unidiv}{#1}\endcsname
+           \fi
+         \else % so, these can be different fonts !
+           \unicodeglyph\unidiv\unimod % no \uchar (yet)
+         \fi\fi}
+      
+      \def\dosetupunicodefont[#1][#2]% also predefines
+        {\doifundefined{\??uc#1\c!commando}
+           {\copyparameters
+              [\??uc#1][\??uc\s!default]
+              [\c!hoogte,\c!diepte,\c!schaal,\c!commandos,
+               \c!interlinie,\c!commando,\c!conversie,regime]}%
+         \getparameters[\??uc#1][#2]}
+      
+      \def\enableunicodefont#1%
+        {\definefontsynonym[\s!Unicode][\getvalue{\??uc#1\c!file}]%
+         \def\unicodescale             {\getvalue{\??uc#1\c!schaal}}%
+         \def\unicodeheight            {\getvalue{\??uc#1\c!hoogte}}%
+         \def\unicodedepth             {\getvalue{\??uc#1\c!diepte}}%
+         \def\unicodedigits            {\getvalue{\??uc#1\c!conversie}}%
+         \def\handleunicodeglyph       {\getvalue{\??uc#1\c!commando}}%
+         \enableregime[\getvalue{\??uc#1regime}]% 
+         \doifvalue{\??uc#1\c!interlinie}\v!ja\setupinterlinespace\relax
+         \getvalue{\??uc#1\c!commandos}\relax}
+      
+      \setupunicodefont
+        [\s!default]
+        [\c!hoogte=1,
+         \c!diepte=1,
+         \c!schaal=1,
+         \c!interlinie=\v!ja,
+         \c!commando=\insertunicodeglyph,
+         \c!conversie=\number,
+         regime=unicode]
+      \protect
+      
+- 9 Set up the Unicode font
+    - Load your map files:
+          \loadmapfile[linlibromuni00xx-public-libertine]
+          \loadmapfile[linlibromuni01xx-public-libertine]
+          \loadmapfile[linlibromuni02xx-public-libertine]
+          \loadmapfile[linlibromuni03xx-public-libertine]
+          \loadmapfile[linlibromuni20xx-public-libertine]
+
+    - Make ConTeXt *not* expect unicode hashes:
+          \chardef\utfunihashmode=1
+
+    - Define the unicode font by name, and then resolve it to a name
+      prefix:
+          \defineunicodefont[Liber][Libertine][regime=utf]
+          
+    - Define font synonyms that resolve to the low-level unicode aliases
+          \definefontsynonym[LibertineRegular][USerReg]
+          \definefontsynonym[LibertineItalic][USerIt]
+          
+    - Load the fallback unicode typescripts that sort of keep the
+      default (base 0-127 ascii) font in sync with the unicode font. 
+          \usetypescriptfile[type-uni]
+          \usetypescript[unicode]
+          
+    - That file includes some convenience macros that allow you to
+      mass-define a load of fontsynonyms that map to the final (tfm)
+      files.
+          \MakeUnicodeSynonymsWithVectors
+            [00,01,02,03,20]% These vectors are each put in
+            {USerReg}% synonym prefix
+            {linlibromuni}% target prefix
+            {xx-LinLibertine}% target suffix
+          
+          %% Equivalent to:
+          %\definefontsynonym[USerReg00][linlibromuni00xx-LinLibertine]
+          %\definefontsynonym[USerReg01][linlibromuni01xx-LinLibertine]
+          %\definefontsynonym[USerReg02][linlibromuni02xx-LinLibertine]
+          %\definefontsynonym[USerReg03][linlibromuni03xx-LinLibertine]
+          %\definefontsynonym[USerReg20][linlibromuni20xx-LinLibertine]
+          
+          
+          \MakeUnicodeSynonymsWithVectors
+            [00,01,02,03,20]
+            {USerIt}
+            {linlibromuni}
+            {xx-LinLibertine-Italic}
+          
+    - The rest is fairly straightforward getting started stuff.
+          \setupbodyfont[unicode]
+          
+          \starttext
+          \Liber % This is the short name of the defined Unicode font
+          
+          Héllø Wořłð!
+          
+          \stoptext
+          
+          

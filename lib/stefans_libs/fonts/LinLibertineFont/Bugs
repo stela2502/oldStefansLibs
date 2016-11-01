@@ -1,0 +1,8 @@
+linuxlibertine.sf.net
+Send a mail to philthelion@sf.net if you want to report a bug or help...
+
+-Hinting is still unfinished (on the other hand, Hinting isn't always the best way for rendering on screen (especially on Linux-systems). Windows users who don't use Antialiasing should take the OTF-files insteadt of ttf. Otherwise Libertine might look somehow strange on your screen.
+
+-A few accented chars or non-latin-chars are probably not the style native users would prefer (even Unicode-Standards sometimes aren't). Get into contact with me, if you have something to correct. In this way I got, for example, many corrections for the russion charakters lately, what resulted in an enormous improvement of the cyrillic alphabet in LinuxLibertine (thanks alot for your help, once again!).
+
+-...

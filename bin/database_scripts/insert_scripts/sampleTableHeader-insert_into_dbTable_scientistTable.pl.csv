@@ -1,0 +1,31 @@
+ NEEDED values:
+ -scientistTable.username
+       a unique identifier for you
+ -scientistTable.name
+       the name of the scientif (you)
+ -scientistTable.workgroup
+       the name of your group leader
+ -scientistTable.position
+       your position (PhD student, postdoc, .. )
+ -scientistTable.email
+       your e-mail address
+ -scientistTable.pw
+       the PW
+ LINKAGE variables:
+ -scientistTable.action_gr_id
+       the link to the action groups
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -action_group_list.list_id
+          
+    -action_group_list.others_id
+          
+ -scientistTable.roles_list_id
+       which roles you might be able to use
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -role_list.list_id
+          
+    -role_list.others_id
+          
+scientistTable.username;scientistTable.name;scientistTable.workgroup;scientistTable.position;scientistTable.email;scientistTable.action_gr_id;action_group_list.list_id;action_group_list.others_id;scientistTable.roles_list_id;role_list.list_id;role_list.others_id;scientistTable.pw;

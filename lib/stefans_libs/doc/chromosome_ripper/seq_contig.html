@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/chromosome_ripper/seq_contig.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#insertdatafile">insertDataFile</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#getcontigsinregion">getContigsInRegion</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::chromosome_ripper::seq_contig</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>seq_contig is a database wrapper class. It is used to identify the NCBI genbank formated sequences that correspond to a given genomic region.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#insertdatafile">insertDataFile</a></p>
+<p><a href="#getcontigsinregion">getContigsInRegion</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>A new object of the class seq_contig</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the NCBI genome information.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="insertdatafile">insertDataFile</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the NCBI mapview/seq_contig.md file defining the chromosomes</p>
+<p>[1]: the NCBI genome build version</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>the count of sequence files defining all chromosomes in this NCBI genome build</p>
+<p>
+</p>
+<h2><a name="getcontigsinregion">getContigsInRegion</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the number of the chromosome</p>
+<p>[1]: the start point of the genomic region of interest in basepairs</p>
+<p>[2]: the end point of the genomic region of interest in basepairs</p>
+<p>[3]: the strain string as used in the mapview/seq_contig.md that should be used to create the list of accession numbers</p>
+<p>[4]: the NCBI genome build version that should be used to create the list of accession numbers</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>a reference to a array of hashes. The hashes contain the region information: {type =&gt; 'Accession Number' or ``GAP'', 
+start_old =&gt; first bp corresponding to the region of interest in this NCBI sequence, 
+end_old =&gt; last bp corresponding to the region of interest in this NCBI sequence,
+length =&gt; the length of the GAP }.
+The array contains the hashes in chromosomal orientation.</p>
+
+</body>
+
+</html>

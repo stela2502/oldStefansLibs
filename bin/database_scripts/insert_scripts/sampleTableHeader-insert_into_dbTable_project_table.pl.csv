@@ -1,0 +1,13 @@
+ NEEDED values:
+ -project_table_name
+       the name of the project
+ -project_table_aim
+       in short -> the aim of the project
+ LINKAGE variables:
+ -project_table_grant_id
+       the grant_id links to a grant table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -grant_table_name
+          the unique name of this grant
+project_table_name;project_table_grant_id;grant_table_name;project_table_aim;

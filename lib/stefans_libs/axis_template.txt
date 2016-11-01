@@ -1,0 +1,39 @@
+sub new {
+    my ( $class, $which, $min_pixels, $max_pixels, $title, $resolution ) = @_;
+
+--
+sub plotTitle{
+	my ( $self, $image, $other_pixel, $color, $title ) = @_;
+
+--
+sub plot {
+
+    my ( $self, $image, $other_pixel, $color, $title ) = @_;
+--
+sub getMinimumPoint {
+
+    my ($self) = @_;
+--
+sub defineAxis {
+    my ($self) = @_;
+
+--
+sub resolveValue {
+
+    my ( $self, $value ) = @_;
+--
+sub axisLength {
+    my ($self) = @_;
+
+--
+sub max_value {
+    my ( $self, $max ) = @_;
+
+--
+sub min_value {
+    my ( $self, $min ) = @_;
+
+--
+sub getDimensionInt {
+    my ( $self, $zahl ) = @_;
+

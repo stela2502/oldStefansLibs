@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_grant_table.pl.xml,v 1.1.2.2 2009/08/26 14:35:33 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>grant_table_name</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the unique name of this grant" spancontent="?">name</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>grant_table_description</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a short description of that grant" spancontent="?">description</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>grant_table_application_file</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a linked file, that contains all the information for that grant" spancontent="?">application_file</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

@@ -1,0 +1,10 @@
+ NEEDED values:
+ -dataset_registaration_description
+       describes the function of that program
+ -dataset_registaration_name
+       the name of the dataset (has to be unique)
+ -dataset_registaration_XML_definition
+       the name of the XML file to use in order to build the GUI form and to execute the task
+ -dataset_registaration_lib_string
+       the perl include string so you can identify the main data handler
+dataset_registaration_description;dataset_registaration_name;dataset_registaration_XML_definition;dataset_registaration_lib_string;

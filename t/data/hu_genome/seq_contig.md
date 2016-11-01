@@ -1,0 +1,10 @@
+#tax_id	chromosome	chr_start	chr_stop	orientation	feature_name	feature_id	feature_type	group_label	weight
+9606	Y	1	1	+	start	-	CONTIG	Celera	-2
+9606	Y	1	1	+	start	-	CONTIG	HuRef	-2
+9606	Y	1	1	+	start	-	CONTIG	reference	-2
+9606	Y	1	3043	+	NW_927734.1	-	CONTIG	Celera	3
+9606	Y	1	34821	+	NT_113967.1	CONTIG:111686	CONTIG	reference	1
+9606	Y	1	3942718	+	NW_001842422.1	-	CONTIG	HuRef	3
+9606	Y	58722	3428425	+	NW_927735.1	-	CONTIG	Celera	3
+9606	Y	84822	171384	+	NT_113968.1	CONTIG:111687	CONTIG	reference	1
+9606	Y	201385	967557	+	NT_113969.1	CONTIG:111688	CONTIG	reference	1

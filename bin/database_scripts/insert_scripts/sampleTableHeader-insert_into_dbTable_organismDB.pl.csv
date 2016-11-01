@@ -1,0 +1,6 @@
+ NEEDED values:
+ -organismDB_organism_tag
+       the organism tag as used by NCBI
+ -organismDB_organism_name
+       a free to choose organism name
+organismDB_organism_tag;organismDB_organism_name;

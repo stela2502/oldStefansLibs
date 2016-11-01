@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/database/antibodyDB.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#createdb">CreateDB</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#dataexists">DataExists</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_values">return values</a></li>
+		</ul>
+
+		<li><a href="#insertdata">insertData</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#getallantibodyinfosbyid">GetAllAntibodyInfosByID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#selectspecificity_byid">SelectSpecificity_ByID</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#selectid_byspecificity">SelectId_BySpecificity</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>::database::antibodyDB</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is a MySQL wrapper that is used to access the table antibody where all antibody informations are stored.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//NimbleGene_config.html">the ::NimbleGene_config manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#createdb">CreateDB</a></p>
+<p><a href="#dataexists">DataExists</a></p>
+<p><a href="#insertdata">insertData</a></p>
+<p><a href="#getallantibodyinfosbyid">GetAllAntibodyInfosByID</a></p>
+<p><a href="#selectspecificity_byid">SelectSpecificity_ByID</a></p>
+<p><a href="#selectid_byspecificity">SelectId_BySpecificity</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class antibodyDB</p>
+<p>
+</p>
+<h2><a name="createdb">CreateDB</a></h2>
+<p>Creates a new table to store the user provided antibody information.
+This method automatically deleted all stored information in a old table!</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>
+</p>
+<h2><a name="dataexists">DataExists</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the specificity. It can eiter be a string for the antibody specificity or a internal antibodyID</p>
+<p>
+</p>
+<h3><a name="return_values">return values</a></h3>
+<p>returns a boolean value, true if the antibody is defined or false if it is not.
+</p>
+<pre>
+
+=cut</pre>
+<p>sub DataExists {
+    my ( $self, $specificity ) = @_;
+    return 1 == 1 if ( defined $self-&gt;{usedData}-&gt;{$specificity} );
+    return 1 == 1 if ( defined $self-&gt;{usedData_byID}-&gt;{$specificity} );</p>
+<pre>
+    my ( $sth, $rv, $what );
+    
+    $what = &quot;specificity&quot; if ( $specificity  =~ m/\w/);
+    $what = &quot;ID&quot;          unless ($specificity  =~ m/\w/ );</pre>
+<pre>
+    print &quot;antibodyDB-&gt;DataExists $specificity =&gt; \$what = $what\n&quot;;</pre>
+<pre>
+    $sth =
+      $self-&gt;{dbh}
+      -&gt;prepare(&quot;Select * from antibody where Specificity = \&quot;$specificity\&quot; &quot;)
+      if ( $what eq &quot;specificity&quot; );
+    $sth =
+      $self-&gt;{dbh}-&gt;prepare(&quot;Select * from antibody where ID = $specificity &quot;)
+      if ( $what eq &quot;ID&quot; );
+    $rv = $sth-&gt;execute();
+    if ( $rv &gt; 0 ) {
+        $rv = $sth-&gt;fetchrow_hashref();
+        if ( $what eq &quot;specificity&quot; ) {
+            $self-&gt;{usedData}-&gt;{$specificity} = $rv;
+            $self-&gt;{usedData_byID}-&gt;{ $rv-&gt;{ID} } = $rv;
+        }
+        if ( $what eq &quot;ID&quot; ) {
+            $self-&gt;{usedData_byID}-&gt;{$specificity} = $rv;
+            $self-&gt;{usedData}-&gt;{ $rv-&gt;{Specificity} } = $rv;
+        }
+        return 1 == 1;
+    }
+    if ( $specificity eq &quot;INPUT&quot; &amp;&amp; $self-&gt;{stop} != 1){
+       $self-&gt;{stop} = 1;
+       $self-&gt; insertData (&quot;-&quot;,&quot;-&quot;, $specificity);
+       return $self-&gt;DataExists($specificity);
+    }
+    return 1 == 0;
+}</pre>
+<p>
+</p>
+<h2><a name="insertdata">insertData</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the name of the company which sells this antibody</p>
+<p>[1]: the order number to order this antibody</p>
+<p>[2]: the antibody specificity string</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>returns a boolean value, true if the antibody is defined or false if it is not.</p>
+<p>
+</p>
+<h2><a name="getallantibodyinfosbyid">GetAllAntibodyInfosByID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>none</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>returns a reference to a hash containing all antibody informations {ID, company, OrderNumber, Specificity}</p>
+<p>
+</p>
+<h2><a name="selectspecificity_byid">SelectSpecificity_ByID</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: internal antibody id (table line id)</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>returns the antibody specificity or the undefined value if the antibody id was not found in the database
+</p>
+<pre>
+
+=cut</pre>
+<p>sub SelectSpecificity_ByID {
+    my ( $self, $ID ) = @_;
+    return $self-&gt;{usedData_byID}-&gt;{$ID}-&gt;{Specificity}
+      if ( $self-&gt;<code>DataExists($ID)</code> );
+    return undef;
+}</p>
+<p>
+</p>
+<h2><a name="selectid_byspecificity">SelectId_BySpecificity</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the antibody specificity string</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>returns the antibody id or the undefined value if the antibody id was not found in the database</p>
+
+</body>
+
+</html>

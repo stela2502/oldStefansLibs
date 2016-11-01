@@ -1,0 +1,53 @@
+pod2html --podpath=stefans_libs --podroot=~/IgH-Locus/Libs_new_structure/stefans_libs/ --infile=../gbFile.pm --outfile=gbFile.html --htmlroot=~/IgH-Locus/Libs_new_structure/stefans_libs/doc/
+pod2html --podpath=stefans_libs --podroot=~/IgH-Locus/Libs_new_structure/stefans_libs/ --infile=../root.pm --outfile=root.html --htmlroot=~/IgH-Locus/Libs_new_structure/stefans_libs/doc/
+
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/ --infile=../designImporter.pm > designImporter.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../fastaFile.pm > fastaFile.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../histogram.pm > histogram.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../importHyb.pm > importHyb.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../NimbleGene_config.pm > NimbleGene_config.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../root.pm > root.html --htmlroot ./
+mkdir database
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/antibodyDB.pm > database/antibodyDB.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/array_Hyb.pm > database/array_Hyb.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/cellTypeDB.pm > database/cellTypeDB.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/fileDB.pm > database/fileDB.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/oligo2dnaDB.pm > database/oligo2dnaDB.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/array_GFF.pm > database/array_GFF.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/array_TStat.pm > database/array_TStat.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/designDB.pm > database/designDB.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../database/hybInfoDB.pm > database/hybInfoDB.html --htmlroot ./
+mkdir nimbleGeneFiles
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../nimbleGeneFiles/gffFile.pm > nimbleGeneFiles/gffFile.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../nimbleGeneFiles/ndfFile.pm > nimbleGeneFiles/ndfFile.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../nimbleGeneFiles/pairFile.pm > nimbleGeneFiles/pairFile.html --htmlroot ./
+mkdir chromosome_ripper
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../chromosome_ripper/gbFileMerger.pm > chromosome_ripper/gbFileMerger.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../chromosome_ripper/seq_contig.pm > chromosome_ripper/seq_contig.html --htmlroot ./
+mkdir evaluation
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../evaluation/GBpict.pm> evaluation/GBpict.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../evaluation/summaryLine.pm > evaluation/summaryLine.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../evaluation/evaluateHMM_data.pm > evaluation/evaluateHMM_data.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../evaluation/plotGFF_Files_HMM.pm > evaluation/plotGFF_Files_HMM.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../evaluation/tableLine.pm > evaluation/tableLine.html --htmlroot ./
+mkdir gbFile
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../gbFile/gbFeature.pm > gbFile/gbFeature.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../gbFile/gbHeader.pm > gbFile/gbHeader.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../gbFile/gbRegion.pm > gbFile/gbRegion.html --htmlroot ./
+mkdir statistics
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../statistics/HMM.pm > statistics/HMM.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../statistics/newGFFtoSignalMap.pm > statistics/newGFFtoSignalMap.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../statistics/statisticItem.pm > statistics/statisticItem.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../statistics/MAplot.pm > statistics/MAplot.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../statistics/statisticItemList.pm > statistics/statisticItemList.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../statistics/UMS.pm > statistics/UMS.html --htmlroot ./
+mkdir sequence_modification
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/blastLine.pm > sequence_modification/blastLine.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/imgtFeatureDB.pm > sequence_modification/imgtFeatureDB.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/inverseBlastHit.pm > sequence_modification/inverseBlastHit.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/blastResult.pm > sequence_modification/blastResult.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/imgtFeature.pm > sequence_modification/imgtFeature.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/primerList.pm > sequence_modification/primerList.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/imgtFile.pm > sequence_modification/imgtFile.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/primer.pm > sequence_modification/primer.html --htmlroot ./
+pod2html --podroot ~/IgH-Locus/Libs_new_structure/stefans_libs/  --infile=../sequence_modification/imgt2gb.pm> sequence_modification/imgt2gb.html --htmlroot ./

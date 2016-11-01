@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_experiment.pl.xml,v 1.1.2.1.2.2 2009/08/26 14:35:33 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>experiment_name</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="The name for the experiment. This name has to be uniwue over all the emperiments." spancontent="?">name</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>experiment_project_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the id of the project the experiment belongs to" spancontent="?">project_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, name FROM projects"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="name"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>radio</type>
+        <name>experiment_hypothesis_id</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the id of the main hypothesis of this experiment" spancontent="?">hypothesis_id</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+         <datasource type="DB" execq="SELECT id, hypothesis_name FROM hypothesies"  dsnselection="mysql"></datasource>
+     <fetchdata valuedata="id" text="hypothesis_name"></fetchdata>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>experiment_description</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a informative description of the experiment - please!" spancontent="?">description</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>experiment_aim</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the aim of this experiment" spancontent="?">aim</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>textarea</type>
+        <name>experiment_conclusion</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the final conclusion that can be drawn from this experiment" spancontent="?">conclusion</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>experiment_PMID</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="" spancontent="?">PMID</label>
+        <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

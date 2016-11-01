@@ -1,0 +1,15 @@
+ NEEDED values:
+ -materialList_list_id
+       
+ LINKAGE variables:
+ -materialList_material_id
+       
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -materialsTable_name
+          the common name for this compound
+    -materialsTable_OrderNumber
+          the order number to for this product
+    -materialsTable_LotNumber
+          the lot number to for this product sample
+materialList_list_id;materialList_material_id;materialsTable_name;materialsTable_OrderNumber;materialsTable_LotNumber;

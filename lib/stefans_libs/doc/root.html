@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/root.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<li><a href="#fileerror">FileError</a></li>
+		<li><a href="#today">Today</a></li>
+		<li><a href="#max">Max</a></li>
+		<li><a href="#min">Min</a></li>
+		<li><a href="#parsehmm_filename">ParseHMM_filename</a></li>
+		<li><a href="#mittelwert">mittelwert</a></li>
+		<li><a href="#median">median</a></li>
+		<li><a href="#getpuresequencename">getPureSequenceName</a></li>
+		<li><a href="#getstandarddeviation">getStandardDeviation</a></li>
+		<li><a href="#getdbh">getDBH</a></li>
+		<li><a href="#flatfilesplitter">FlatFileSplitter</a></li>
+		<li><a href="#getmatchingfeaturesofflatfile">GetMatchingFeaturesOfFlatFile</a></li>
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::root</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>root is a small collection of methods that are used in many libary parts of my programming work.</p>
+<p>The methods are:
+<a href="#fileerror">FileError</a>,
+<a href="#today">Today</a>,
+<a href="#max">Max</a>,
+<a href="#min">Min</a>,
+<a href="#getmatchingfeaturesofflatfile">GetMatchingFeaturesOfFlatFile</a>,
+<a href="#getdbh">getDBH</a>,
+<a href="#getstandarddeviation">getStandardDeviation</a>,
+<a href="#getpuresequencename">getPureSequenceName</a>,
+<a href="#median">median</a>,
+<a href="#mittelwert">mittelwert</a> and
+<a href="#parsehmm_filename">ParseHMM_filename</a>.</p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>The method new returns a root object. No Variables are needed.</p>
+<p>
+</p>
+<h2><a name="fileerror">FileError</a></h2>
+<p>FileError returns the string ``Konnte File $file nicht öffnen\n''.</p>
+<p>The Filename has to be provided as first variable.</p>
+<p>
+</p>
+<h2><a name="today">Today</a></h2>
+<p>Today somply returns a Data::Simple object.</p>
+<p><em>return Date::Simple-</em>new();</p>
+<p><a href="/Date/Simple.html">the Date::Simple manpage</a>
+</p>
+<pre>
+
+=cut</pre>
+<p>sub Today {
+    return Date::Simple-&gt;new();
+}</p>
+<p>
+</p>
+<h2><a name="max">Max</a></h2>
+<p>Returns the maximum integer value of the array of variables given.</p>
+<p>
+</p>
+<h2><a name="min">Min</a></h2>
+<p>Returns the minimum integer value of the array of variables given.</p>
+<p>
+</p>
+<h2><a name="parsehmm_filename">ParseHMM_filename</a></h2>
+<p>HMM data files are formated like this:</p>
+<p>path2file/Antibody-Celltype-Organism-DesignID-IterationNr.gff</p>
+<p>ParseHMM_filename uses only the filename and returns a hash consisting of
+Organism, CellType, AB, Iteration and designID.</p>
+<p>
+</p>
+<h2><a name="mittelwert">mittelwert</a></h2>
+<p>Returns the mean from the array of numbers given by the <code>reference(!)</code> to that array.</p>
+<p>The array values are not changed.</p>
+<p>
+</p>
+<h2><a name="median">median</a></h2>
+<p>Returns the median from the array of numbers given by the <code>reference(!)</code> to that array.</p>
+<p>The array values are not changed.</p>
+<p>
+</p>
+<h2><a name="getpuresequencename">getPureSequenceName</a></h2>
+<p>getPureSequenceName splitts up a file string in the format 
+'/path2file/filename.suffix'
+into its parts.
+getPureSequenceName returns a hash consisting of {path} = /path2file; {filename} = filename.suffix 
+and {MySQL_entry} = filename.</p>
+<p>
+</p>
+<h2><a name="getstandarddeviation">getStandardDeviation</a></h2>
+<p>Returns three variables, $mean ,$Varianz and  $StdAbw representing the mean, varianze and standard deviation of the 
+array of numbers given by the <code>reference(!)</code> to that array. The array is not changed.</p>
+<p>
+</p>
+<h2><a name="getdbh">getDBH</a></h2>
+<p>getDBH is a possible security risk, as the mysql user data is stored here.
+It returns a MySQL database handle with the 
+/ DBI-&gt;connect( ``DBI:$driver:$dbname:$host'', $dbuser, $dbPW ) / method from
+<a href="//DBI.html">the ::DBI manpage</a>.</p>
+<p>The perllib perl-DBI and possibly perl-DBD-mysql have to be installed for this function.</p>
+<p>
+</p>
+<h2><a name="flatfilesplitter">FlatFileSplitter</a></h2>
+<p>Depricated to gone.</p>
+<p>
+</p>
+<h2><a name="getmatchingfeaturesofflatfile">GetMatchingFeaturesOfFlatFile</a></h2>
+<p>This method is a potent biological flatfile search algorithm
+if the flatfile has the line <em>//</em> als entry end.</p>
+<p>The method is called by root-&gt;GetMatchingFeaturesOfFlatFile($flatfile, $searchString ).</p>
+<p>The method returns a reference to an array of text formated
+lines of the flatfile where a searchString matches to the entry and
+a reference to an array where all feature enries starting with /^ID/ are stored.</p>
+
+</body>
+
+</html>

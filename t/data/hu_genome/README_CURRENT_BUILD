@@ -1,0 +1,41 @@
+======================================================================
+Organism: Homo sapiens (human)
+NCBI Build Number: 36    
+Version: 3
+Release date: 24 March 2008
+
+Freeze date for component genomic sequences: August 2005
+Freeze date for other genomic sequences: 18 October 2007
+Freeze date for mRNAs/ESTs used for annotation: 16 October 2007
+
+This build consists of a reference assembly for the whole genome,
+alternate assemblies for the whole genome produced by Celera and by 
+JCVI, plus alternate assemblies for some parts of the genome.
+
+Assemblies in NCBI Build 36.3
+Label           Description
+-----           -----------
+reference       Human Genome Sequencing Consortium finished genome,
+                release 4.
+Celera          Celera Genomics whole genome shotgun assembly (AADB),
+                November 2001. This assembly included both WGS and BAC
+                sequence data. 
+HuRef           J Craig Venter Institute whole genome shotgun assembly
+                (May 2007) (see http://www.jcvi.org/research/huref/). 
+                This assembly represents a composite haploid version 
+                of the diploid genome sequence from a single 
+                individual (J. Craig Venter).
+CRA_TCAGchr7v2  The Center for Applied Genomics at the Hospital for
+                Sick Children (Toronto) chromosome 7 assembly, (April
+                2004). 
+DR53            DR53 haplotype for the MHC region on chromosome 6.
+c5_H2           An alternate assembly for part of chromosome 5.
+c6_COX          An alternate haplotype assembly of the chromosome 6
+                MHC region based on sequence data from the COX
+                library.  
+c6_QBL          An alternate haplotype assembly of the chromosome 6
+                MHC region based on sequence data from the QBL
+                library. 
+c22_H2          An alternate assembly for part of chromosome 22.
+   
+======================================================================

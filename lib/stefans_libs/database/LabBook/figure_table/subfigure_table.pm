@@ -1,0 +1,272 @@
+package subfigure_table;
+
+#  Copyright (C) 2010 Stefan Lang
+
+#  This program is free software; you can redistribute it
+#  and/or modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation;
+#  either version 3 of the License, or (at your option) any later version.
+
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the GNU General Public License for more details.
+
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, see <http://www.gnu.org/licenses/>.
+
+use stefans_libs::database::variable_table;
+use base variable_table;
+use File::Copy;
+
+##use some_other_table_class;
+
+use strict;
+use warnings;
+
+sub new {
+
+	my ( $class, $dbh, $debug ) = @_;
+
+	Carp::confess("we need the dbh at $class new \n")
+	  unless ( ref($dbh) eq "DBI::db" );
+
+	my ($self);
+
+	$self = {
+		debug => $debug,
+		dbh   => $dbh
+	};
+
+	bless $self, $class if ( $class eq "subfigure_table" );
+	$self->init_tableStructure();
+
+	my $configuration = configuration->new();
+	my $return        = $configuration->GetConfigurationValue_for_tag(
+		'externalFiles_storage_path');
+	unless ( defined $return ) {
+		$configuration->AddDataset(
+			{
+				'tag'   => 'externalFiles_storage_path',
+				'value' => "/storage/Genexpress/dataPath/"
+			}
+		);
+		$return = $configuration->GetConfigurationValue_for_tag(
+			'externalFiles_storage_path');
+	}
+	$self->{'data_path'} = $return . "Figure_Files/";
+	mkdir( $self->{'data_path'} ) unless ( -d $self->{'data_path'} );
+	return $self;
+}
+
+=head2 get_file_position_and_caption_for_id ( id or arrayref of ids)
+
+You will at all times (even if we do not have anything) get two array refs,
+the first containing the absolute position of the files and one containing the captions for all of these files.
+
+=cut
+
+sub get_file_position_and_caption_for_id {
+	my ( $self, $id ) = @_;
+	my $data = $self->get_data_table_4_search(
+		{
+			'search_columns' =>
+			  [ ref($self) . ".caption", ref($self) . ".file" ],
+			'where' => [ [ ref($self) . ".id", '=', "my_value" ] ]
+		},
+		$id
+	);
+	my ( $subfigure_file, $subfigure_caption, $log );
+	$subfigure_file    = $data->getAsArray( ref($self) . ".file" );
+	$subfigure_caption = $data->getAsArray( ref($self) . ".caption" );
+	for ( my $i = 0 ; $i < @$subfigure_file ; $i++ ) {
+		#print "you get the subfigure ($i): @$subfigure_file[$i]\n";
+		unless ( @$subfigure_file[$i] =~ m/^$self->{'data_path'}/ ) {
+			@$subfigure_file[$i] = $self->{'data_path'} . @$subfigure_file[$i];
+		}
+		@$subfigure_caption[$i] = '' unless ( defined @$subfigure_caption[$i] );
+		$log .= "File $i = @$subfigure_file[$i]\nCaption $i = @$subfigure_caption[$i]\n";
+	}
+	print ref($self)."::get_file_position_and_caption_for_id returns a list of files:\n$log";
+	return ( $subfigure_file, $subfigure_caption );
+}
+
+sub init_tableStructure {
+	my ( $self, $dataset ) = @_;
+	my $hash;
+	$hash->{'INDICES'}    = [];
+	$hash->{'UNIQUES'}    = [];
+	$hash->{'variables'}  = [];
+	$hash->{'table_name'} = "subfigures_table";
+	push(
+		@{ $hash->{'variables'} },
+		{
+			'name'        => 'caption',
+			'type'        => 'TEXT',
+			'NULL'        => '1',
+			'description' => '',
+		}
+	);
+	push(
+		@{ $hash->{'variables'} },
+		{
+			'name'        => 'file',
+			'file_upload' => 1,
+			'type'        => 'VARCHAR (200)',
+			'NULL'        => '0',
+			'description' => '',
+		}
+	);
+	push(
+		@{ $hash->{'variables'} },
+		{
+			'name'        => 'md5_sum',
+			'type'        => 'VARCHAR (32)',
+			'NULL'        => '1',
+			'description' => '',
+		}
+	);
+	push( @{ $hash->{'UNIQUES'} }, ['file'] );
+
+	$self->{'table_definition'} = $hash;
+	$self->{'UNIQUE_KEY'}       = ['file'];
+
+	$self->{'table_definition'} = $hash;
+
+	$self->{'Group_to_MD5_hash'} = ['caption']
+	  ;    # define which values should be grouped to get the 'md5_sum' entry
+	$self->{'_tableName'} = $hash->{'table_name'}
+	  if ( defined $hash->{'table_name'} )
+	  ; # that is helpful, if you want to use this class without any variable tables
+
+	##now we need to check if the table already exists. remove that for the variable tables!
+	unless ( $self->tableExists( $self->TableName() ) ) {
+		$self->create();
+	}
+	## Table classes, that are linked to this class have to be added as 'data_handler',
+	## both in the variable definition and here to the 'data_handler' hash.
+	## take care, that you use the same key for both entries, that the right data_handler can be identified.
+	#$self->{'data_handler'}->{''} = some_other_table_class->new( );
+	return $dataset;
+}
+
+sub DO_ADDITIONAL_DATASET_CHECKS {
+	my ( $self, $dataset ) = @_;
+	my $ok       = 0;
+	my @temp     = split( "/", $dataset->{'file'} );
+	my $filename = $temp[ @temp - 1 ];
+	my $id       = $self->_return_unique_ID_for_dataset(
+		{ 'file' => $filename, 'caption' => $dataset->{'caption'} } );
+	$dataset->{'id'} = $id if ( defined $id );
+	unless ( -f $dataset->{'file'} ) {
+		$self->{'error'} .= ref($self)
+		  . "check_dataset -> Sorry, but I can not open the 'file' '$dataset->{'file'}'\n";
+	}
+	else {
+		my $source = $dataset->{'file'};
+		$dataset->{'md5_sum'} = $self->md5sum( $dataset->{'file'} );
+	}
+	return !( $self->{'error'} =~ m/\w/ );
+}
+
+sub md5sum {
+	my ( $self, $file ) = @_;
+	my $digest = "";
+	eval {
+		open( FILE, $file ) or die "Can't find file $file\n";
+		my $ctx = Digest::MD5->new;
+		$ctx->addfile(*FILE);
+		$digest = $ctx->hexdigest;
+		close(FILE);
+	};
+	if ($@) {
+		print $@;
+		return "";
+	}
+	return $digest;
+}
+
+sub expected_dbh_type {
+	return 'dbh';
+
+	#return 'database_name';
+}
+
+=head2 post_INSERT_INTO_DOWNSTREAM_TABLES
+
+Here we move save the external file to the storage directory for external files.
+
+=cut
+
+sub post_INSERT_INTO_DOWNSTREAM_TABLES {
+	my ( $self, $id, $dataset ) = @_;
+	$self->{'error'} .= '';
+	Carp::confess ( "OhOh - where is my id?? - id = '$id'\n") unless ( defined $id);
+	my @temp = split( "/", $dataset->{'file'} );
+	my $filename = $temp[ @temp - 1 ];
+	print "we think that $filename is the file from the path $dataset->{'file'} (id = $id)\n";
+	unless ( -f "$self->{'data_path'}$id.$filename" ) {
+		copy( $dataset->{'file'},
+			"$self->{'data_path'}$id.$filename" )
+		  or Carp::confess(
+"File '$dataset->{'file'}' cannot be copied to $self->{'data_path'}$id.$filename.\n$!"
+		  );
+		unlink ( $dataset->{'file'} );
+		$self->UpdateDataset(
+			{ 'id' => $id, 'file' => "$self->{'data_path'}$id.$filename" } );
+		$self->UpdateDataset(
+			{
+				'id'     => $id,
+				'md5_sum' => $self->md5sum("$self->{'data_path'}$id.$filename")
+			}
+		);
+	}
+	else {
+		Carp::confess(
+			ref($self)
+			  . " - I encountered a critical error - the file already existed on this server (id = $id)\n"
+		);
+	}
+	return 1;
+}
+
+sub _dropTable {
+	my ( $self, $table_base_name ) = @_;
+	## OK you are crasy - I need to delete all stored files with me!!!
+
+	my $sql = "DROP table " . $self->TableName($table_base_name);
+
+	if ( $self->tableExists( $self->TableName($table_base_name) ) ) {
+		foreach my $file (
+			@{
+				$self->get_data_table_4_search(
+					{
+						'search_columns' => ['file']
+					}
+				  )->getAsArray('file')
+			}
+		  )
+		{
+			if ( -f $file ) {
+				print "we unlink the file '$file'\n";
+				unlink($file);
+			}
+			else {
+				warn "I can not delete the not existing file '$file'!\n";
+			}
+		}
+		$self->{dbh}->do($sql)
+		  or Carp::confess(
+			    ref($self)
+			  . ":create -> we could not execute '$sql;'\n"
+			  . $self->{dbh}->errstr() );
+		$self->{'check_ok'} = 0;
+	}
+
+	if ( $self->{debug} ) {
+		print ref($self), ":create -> we run $sql\n";
+	}
+
+	return 1;
+}
+1;

@@ -1,0 +1,13 @@
+ NEEDED values:
+ -genomeDB_version
+       the version of the genome information
+ -genomeDB_creationDate
+       the data this version of the genome was released
+ LINKAGE variables:
+ -genomeDB_organism_id
+       this could either be a organism_id or it should be undefined and the tag 'organism' results in an ID
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -organismDB_organism_tag
+          the organism tag as used by NCBI
+genomeDB_version;genomeDB_organism_id;organismDB_organism_tag;genomeDB_creationDate;

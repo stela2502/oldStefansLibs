@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/gbFile/gbFeature.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_values">retrun values</a></li>
+		</ul>
+
+		<li><a href="#changeregion_add">ChangeRegion_Add</a></li>
+		<li><a href="#changeregion_diff">ChangeRegion_Diff</a></li>
+		<li><a href="#add_nogb_info">Add_noGB_Info</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#retrun_value">retrun value</a></li>
+		</ul>
+
+		<li><a href="#isig_gene">IsIg_gene</a></li>
+		<li><a href="#fortable">forTable</a></li>
+		<li><a href="#tag">Tag</a></li>
+		<li><a href="#iscomplement">IsComplement</a></li>
+		<li><a href="#getregionfordrawing">getRegionForDrawing</a></li>
+		<li><a href="#match">Match</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#matcheswith">MatchesWith</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+		</ul>
+
+		<li><a href="#getlength">getLength</a></li>
+		<li><a href="#start">Start</a></li>
+		<li><a href="#end">End</a></li>
+		<li><a href="#getasgb">getAsGB</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#addinfo">AddInfo</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+		</ul>
+
+		<li><a href="#name">Name</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#method">method</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+		<li><a href="#sequence">Sequence</a></li>
+		<ul>
+
+			<li><a href="#atributes">atributes</a></li>
+			<li><a href="#return_value">return value</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::gbFile::gbFeature</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>A object of this class represents one genbank formated feature.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html">the ::gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#changeregion_add">ChangeRegion_Add</a></p>
+<p><a href="#changeregion_diff">ChangeRegion_Diff</a></p>
+<p><a href="#region">Region</a></p>
+<p><a href="#add_nogb_info">Add_noGB_Info</a></p>
+<p><a href="#isig_gene">IsIg_gene</a></p>
+<p><a href="#fortable">forTable</a></p>
+<p><a href="#tag">Tag</a></p>
+<p><a href="#iscomplement">IsComplement</a></p>
+<p><a href="#getregionfordrawing">getRegionForDrawing</a></p>
+<p><a href="#match">Match</a></p>
+<p><a href="#matcheswith">MatchesWith</a></p>
+<p><a href="#getlengthfordrawing">getLengthForDrawing</a></p>
+<p><a href="#getlength">getLength</a></p>
+<p><a href="#start">Start</a></p>
+<p><a href="#end">End</a></p>
+<p><a href="#getasgb">getAsGB</a></p>
+<p><a href="#addinfo">AddInfo</a></p>
+<p><a href="#name">Name</a></p>
+<p><a href="#sequence">Sequence</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the tag of this feature (gene, mRNA, ...)</p>
+<p>[1]: the genbank formated region ( for example 'complement(join(3..7,19..30,40..440))' )</p>
+<p>
+</p>
+<h3><a name="retrun_values">retrun values</a></h3>
+<p>A object of the class gbFeature</p>
+<p>
+</p>
+<h2><a name="changeregion_add">ChangeRegion_Add</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html#changeregion_add">ChangeRegion_Add in the gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="changeregion_diff">ChangeRegion_Diff</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html#changeregion_diff">ChangeRegion_Diff in the gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="add_nogb_info">Add_noGB_Info</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: key to the information</p>
+<p>[1]: the information</p>
+<p>
+</p>
+<h3><a name="retrun_value">retrun value</a></h3>
+<p>a reference of a hash with the structure { key =&gt; 'information' }</p>
+<p>
+</p>
+<h2><a name="isig_gene">IsIg_gene</a></h2>
+<p>This method returns 'C', 'D', 'J' or 'V' if the feature tag matches 'D_', 'J_', 'C_' or 'V_'.
+Default is the undefined value.</p>
+<p>
+</p>
+<h2><a name="fortable">forTable</a></h2>
+<p>This method returns [ start[bp], end[bp], $tag, $name, ``-'', ``-'' ] for most of the feature tags.
+If the feature tag eq 'D_segment', 'J_segment', 'C_region' or 'C_segment'  the name is set to  'IgHD', 'IgHJ' or 'IgHC'.
+If the feature represents a V_segment the retrun array is set to 
+[ start[bp], end[bp], tag, name, ``IgHV'', ``V'family number''' ]</p>
+<p>
+</p>
+<h2><a name="tag">Tag</a></h2>
+<p>returns the tag of this feature</p>
+<p>
+</p>
+<h2><a name="iscomplement">IsComplement</a></h2>
+<p>returns 'complement' if this feature matches to the complement strain or the undefined value.</p>
+<p>
+</p>
+<h2><a name="getregionfordrawing">getRegionForDrawing</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html#getregionfordrawing">getRegionForDrawing in the gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="match">Match</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: start of the region of interest in basepairs</p>
+<p>[1]: end of the region of interest in basepairs</p>
+<p>[2]: additional space in basepairs</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>return ($start &lt; $self-&gt;<code>End()</code> + $delta) &amp;&amp; ($end &gt; $self-&gt;<code>Start()</code> - $delta)</p>
+<p>
+</p>
+<h2><a name="matcheswith">MatchesWith</a></h2>
+<p>MatchesWith is the interface to a internal counter.</p>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: string of the matching feature</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>the internal counter with the key atribute[0] is raied by one.</p>
+<p>See <a href="/gbFile/gbregion.html#_getlengthfordrawing">/``getLengthForDrawing'' in the gbFile::gbregion manpage</a></p>
+<p>
+</p>
+<h2><a name="getlength">getLength</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html#length">Length in the gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="start">Start</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html#start">Start in the gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="end">End</a></h2>
+<p>See <a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/gbFile/gbRegion.html#end">End in the gbFile::gbRegion manpage</a></p>
+<p>
+</p>
+<h2><a name="getasgb">getAsGB</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: start in basepairs</p>
+<p>[1]: end in basepairs</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>Returns the text string representing this gbFeature in genbank format</p>
+<p>
+</p>
+<h2><a name="addinfo">AddInfo</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: feature information 'tag'</p>
+<p>[1]: feture information 'value'</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>Add feature information to this feature.</p>
+<p>
+</p>
+<h2><a name="name">Name</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the name of this feature or the undefined value</p>
+<p>
+</p>
+<h3><a name="method">method</a></h3>
+<p>The name of one feature is interpretated as the value of the feature information tag 'gene'.
+If the atribute[0] is defined the name is set by using $self-&gt;AddInfo(``gene'',atribute[0]).</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>the value of the 'gene' feature informatin is returned.
+If this information is not defined the 'note' information is returned if it matches m/\d+[pg]*\.\d+/
+(a IgH V_segment in the Corcoran IgH locus) or the undefined value.</p>
+<p>
+</p>
+<h2><a name="sequence">Sequence</a></h2>
+<p>
+</p>
+<h3><a name="atributes">atributes</a></h3>
+<p>[0]: the sequence string</p>
+<p>
+</p>
+<h3><a name="return_value">return value</a></h3>
+<p>Returns the sequence of this gbFeature as unformated string (if it was set with this method).</p>
+
+</body>
+
+</html>

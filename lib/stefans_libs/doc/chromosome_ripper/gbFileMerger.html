@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>/home/stefan/IgH-Locus/Libs_new_structure/stefans_libs/chromosome_ripper/gbFileMerger.pm</title>
+<link rev="made" href="mailto:feedback@suse.de" />
+</head>
+
+<body style="background-color: white">
+
+<p><a name="__index__"></a></p>
+<!-- INDEX BEGIN -->
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#depends_on">Depends on</a></li>
+		<li><a href="#provides">Provides</a></li>
+	</ul>
+
+	<li><a href="#methods">METHODS</a></li>
+	<ul>
+
+		<li><a href="#new">new</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+		</ul>
+
+		<li><a href="#create_gbfiles">Create_GBfiles</a></li>
+		<ul>
+
+			<li><a href="#arguments">arguments</a></li>
+			<li><a href="#method">Method</a></li>
+		</ul>
+
+	</ul>
+
+</ul>
+<!-- INDEX END -->
+
+<hr />
+<p>This document is in Pod format.  To read this, use a Pod formatter,
+like ``perldoc perlpod''.</p>
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p>stefans_libs::chromosome_ripper::gbFileMerger</p>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>This class is used to create the sequence files corresponding to the NimbleGene array design.
+It uses the NimbleGene array design order file and a downloaded version of the NCBI genome version on which the array sdesign is based.</p>
+<p>
+</p>
+<h2><a name="depends_on">Depends on</a></h2>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//doc/chromosome_ripper/seq_contig.html">the ::chromosome_ripper::seq_contig manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//gbFile.html">the ::gbFile manpage</a>,</p>
+<p><a href="//home/stefan/IgH-Locus/Libs_new_structure/stefans_libs//root.html">the ::root manpage</a></p>
+<p>
+</p>
+<h2><a name="provides">Provides</a></h2>
+<p><a href="#create_gbfiles">Create_GBfiles</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="methods">METHODS</a></h1>
+<p>
+</p>
+<h2><a name="new">new</a></h2>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>none</p>
+<p>A new object of the class gbFileMerger.</p>
+<p>
+</p>
+<h2><a name="create_gbfiles">Create_GBfiles</a></h2>
+<p>This is the main method of the class gbFileMerger.</p>
+<p>
+</p>
+<h3><a name="arguments">arguments</a></h3>
+<p>[0]: the NimbleGene design order file. It has to consist of lines like this:
+``Chr[0-9]+:[0-9]+.[0-9]+[KM]*-[0-9]+.[0-9]+[KM]* ('filename MySQL entry for this chromosomal region')''
+The filename must not contain '.' or any characters used by a command line shell.</p>
+<p>[1]: the outpath where the sequences should be written to</p>
+<p>[2]: the species string for this chromosomal assembly (i.e. C57BL/6J for the  Mus musculus strain C57BL/6J)</p>
+<p>[3]: the NCBI genome build version</p>
+<p>[4]: the local path of the NCBI chromosome data</p>
+<p>
+</p>
+<h3><a name="method">Method</a></h3>
+<p>Foreach genomic region on the array the method <a href="/stefans_libs/chromosome_ripper/seq_contig.html#getcontigsinregion">getContigsInRegion in the stefans_libs::chromosome_ripper::seq_contig manpage</a> is called to get the
+NCBI accession numbers of the sequences deinfining this genomic region. A new <a href="/stefans_libs/gbFile.html">the stefans_libs::gbFile manpage</a> is created for every genomic region.</p>
+<p>If such a genomic region consists only of one NCBI sequence file, the sequence file is extracted from the (uncompressed) NCBI genbank formated 
+chromosome data. This genbank formated sequence file if inserted in a <a href="/stefans_libs/gbFile.html">the stefans_libs::gbFile manpage</a> object and the object method
+<a href="/stefans_libs/gbFile.html#writeasgb">WriteAsGB in the stefans_libs::gbFile manpage</a> is used to clip the region of interest.</p>
+<p>If there is more than one NCBI sequence file corresponding to the genomic region, each sequece is trimmed as beforementioned and these
+trimmed sequences are merged together using this algorithm:</p>
+<p>1. get trimmed features using <a href="/stefans_libs/gbFile.html#features">Features in the stefans_libs::gbFile manpage</a>. 
+2. foreach feature adjust the location of that feature using <a href="/stefans_libs/gbFile/gbFeatures.html#changeregion_add">ChangeRegion_Add in the stefans_libs::gbFile::gbFeatures manpage</a> with the sequence 
+length of the newly created genbank formated file or 0 if this is the first trimmed sequence in this genoic region.
+3. add these features to the newly created genabnk formated file and
+4. add the trimmed sequence to the newly created genbank file using <a href="/stefans_libs/gbFile.html#addsequence">AddSequence in the stefans_libs::gbFile manpage</a>.</p>
+<p>The newly created sequence file is writted as <em>outpath</em>/<em>filename_in_brackets</em>.gb</p>
+<p>Reference to a array containing the absolute filenames of the newly created genbank files.
+=cut</p>
+<p>sub Create_GBfiles {
+    my ( $self, $listFileOfGBregions, $outpath, $group_label, $build,
+        $path2Chromosomes )
+      = @_;
+    die
+``Create_GBfiles needs the list file of the wanted chromosomal regions, the outpath,\n'',
+      ``the NCBIsequence group label, the NCBI genome build number and the path to the NCBI chromosome data!\n $listFileOfGBregions, $outpath, $group_label, $build, $path2Chromosomes\n''
+      unless ( @_ == 6 );</p>
+<pre>
+    my (
+        $chromosome,        $start,            $end,
+        $name,              $region_entries,   $new_gbFile,
+        $newEntrie,         $gbSequence_array, $gbID_array,
+        $chromosome_string, $tempGBfile,       $new,
+        $features,          @accs , $temp,     @fileList
+    );</pre>
+<pre>
+    my $tempDir = &quot;/Mass/temp&quot;;
+    system(&quot;mkdir -p /Mass/temp&quot;);</pre>
+<pre>
+    open( gbRegionFile, &quot;&lt;$listFileOfGBregions&quot; )
+      or die &quot;could not open listFileOfGBregions ($listFileOfGBregions)\n&quot;;
+    while (&lt;gbRegionFile&gt;) {
+        next if ( $_ =~ m/^#/ );
+        if ( $_ =~ m/Chr(\d*):([\d,\.MKbp]*)-([\d,\.MKbp]*) \(([\w-]*)\)/ ) {
+            ( $chromosome, $start, $end, $name ) = ( $1, $2, $3, $4 );</pre>
+<pre>
+            print &quot;Create_GBfiles for Chromosoal Region: Chr$chromosome, $start bp to $end bp, write as $name.gb\n&quot; if ( defined $self-&gt;{test});</pre>
+<pre>
+            $region_entries =
+              $self-&gt;{seq_contig}
+              -&gt;getContigsInRegion( $chromosome, $start, $end, $group_label,
+                $build );</pre>
+<pre>
+            if ( defined $self-&gt;{test}){
+            my $temp = @$region_entries;
+            print &quot;Got $temp different regions for file $name.gb\n&quot;;
+            }
+            $new_gbFile         = gbFile-&gt;new();
+            $new_gbFile-&gt;{path} = $outpath;
+            $new_gbFile-&gt;{name} = $name;
+            @accs = undef;</pre>
+<pre>
+            foreach $newEntrie (@$region_entries) {</pre>
+<pre>
+                foreach my $temp (sort keys %$newEntrie){
+                   print &quot;$temp -&gt; $newEntrie-&gt;{$temp}\n&quot;;
+                }</pre>
+<pre>
+                ## 1. type &lt;Gap|NCBI Accession&gt;
+                if ( $newEntrie-&gt;{type} eq &quot;GAP&quot; ) {
+                    print &quot;Gap with length = $newEntrie-&gt;{'length'}\n&quot; if ( defined $self-&gt;{test});
+                    $new_gbFile-&gt;AddSequence(
+                        $self-&gt;getN_Sequence( $newEntrie-&gt;{'length'} ) );
+                    next;
+                }
+                else {
+                    next unless ( $newEntrie-&gt;{type} =~ m/NT_\d*/ );
+                    push ( @accs, &quot;$newEntrie-&gt;{type} ($newEntrie-&gt;{start_old} to $newEntrie-&gt;{end_old})&quot;);
+                    if ( $chromosome / 10 &lt; 1 ) {
+                        $chromosome_string = &quot;0$chromosome&quot;;
+                    }
+                    else { $chromosome_string = $chromosome; }</pre>
+<pre>
+                    ## den richtigen NCBI Eintrag aus dem Chromosom extrahieren
+#                    print &quot;GetMatchingFeaturesOfFlatFile\n$path2Chromosomes/CHR_$chromosome_string/mm_ref_chr$chromosome.gbk\n$newEntrie-&gt;{type}\n&quot;;</pre>
+<pre>
+                    ( $gbSequence_array, $gbID_array ) =
+                      $self-&gt;{root}-&gt;GetMatchingFeaturesOfFlatFile(
+&quot;$path2Chromosomes/CHR_$chromosome_string/mm_ref_chr$chromosome.gbk&quot;,
+                        $newEntrie-&gt;{type}
+                      );
+#                    foreach my $temp (@$gbSequence_array){
+#                      print &quot;$temp\n&quot;;
+#                    }</pre>
+<pre>
+                    ## das Temporäre GB file schreiben
+                    open( TEMP, &quot;&gt;$tempDir/temp.gb&quot; )
+                      or die &quot;could not create $tempDir/temp.gb\n&quot;;
+                    foreach my $line (@$gbSequence_array) {
+                        print TEMP $line;
+                    }
+                    close(TEMP);</pre>
+<pre>
+                    ## das temporäre GB file lesen
+                    $tempGBfile = gbFile-&gt;new(&quot;$tempDir/temp.gb&quot;);
+                    $new        = 0;</pre>
+<pre>
+                    ## falls nur ein Teil der GB files benötigt wird -&gt;beschneiden!
+                    if ( $newEntrie-&gt;{start_old} &gt; 0 ) {
+                        $tempGBfile-&gt;WriteAsGB( &quot;$tempDir/temp.gb&quot;,
+                            $newEntrie-&gt;{start_old},
+                            $newEntrie-&gt;{end_old} );
+                        $new = 1;
+                    }
+                    if (   $newEntrie-&gt;{end_old} &lt; $tempGBfile-&gt;Length()
+                        &amp;&amp; $new == 0 )
+                    {
+                        $tempGBfile-&gt;WriteAsGB( &quot;$tempDir/temp.gb&quot;,
+                            $newEntrie-&gt;{start_old},
+                            $newEntrie-&gt;{end_old} );
+                        $new = 1;
+                    }
+                    if ( $new == 1 ) {
+                        $tempGBfile = gbFile-&gt;new(&quot;$tempDir/temp.gb&quot;);
+                    }</pre>
+<pre>
+                    ## die Features des 'alten' gb files in das neue übertragen!
+                    my $features = $tempGBfile-&gt;Features();
+                    $tempGBfile-&gt;WriteAsGB(&quot;./test.gb&quot;);
+                    $temp = @$features;
+                    print &quot;$temp features in ./test.gb\n&quot;;
+                    foreach my $feature ( @$features) {
+                       $feature-&gt;ChangeRegion_Add($new_gbFile-&gt;Length);
+                       $new_gbFile-&gt;Features($feature);
+                    }
+                    $new_gbFile-&gt;AddSequence($tempGBfile-&gt;{seq});
+                    unless ( defined $new_gbFile-&gt;Header()){
+                        $new_gbFile-&gt;Header(&quot;LOCUS&quot;, &quot;$name&quot;);
+                        $new_gbFile-&gt;Header(&quot;ACCESSION&quot;, &quot;$name.1&quot;);
+                        $new_gbFile-&gt;Header(&quot;DEFINITION&quot;, $tempGBfile-&gt;Header(&quot;DEFINITION&quot;));
+                        $new_gbFile-&gt;Header(&quot;SOURCE&quot;, $tempGBfile-&gt;Header(&quot;SOURCE&quot;));
+                        $new_gbFile-&gt;Header(&quot;  ORGANISM&quot;, $tempGBfile-&gt;Header(&quot;  ORGANISM&quot;));
+                    }
+                }</pre>
+<pre>
+            }
+            my $acc = join(&quot;; &quot;, @accs);
+            my $string = 
+  &quot;created from the NCBI genome build $build from the sequences $acc with the NimbleGene Array evaluation program written by Stefan Lang&quot;;
+            $new_gbFile-&gt;Header(&quot;COMMENT&quot;, $string);
+            $new_gbFile-&gt;WriteAsGB(&quot;$outpath/$name.gb&quot;);
+            push(@fileList, &quot;$outpath/$name.gb&quot;);
+        }
+        else {
+            die
+&quot;line $_ did not match to Chr(\d*):([\d,\.MKbp]*)-([\d,\.MKbp]*) \((\w*)\)\n&quot;;
+        }
+    }
+    return \@fileList;
+}</pre>
+<p>sub getN_Sequence {
+    my ( $self, $length ) = @_;
+    my (@seq);
+    for ( my $i = 0 ; $i &lt; $length ; $i++ ) {
+        @seq[$i] = ``N'';
+    }
+    return join( ``'', @seq );
+}</p>
+<p>1;</p>
+
+</body>
+
+</html>

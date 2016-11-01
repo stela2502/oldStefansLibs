@@ -1,0 +1,39 @@
+ NEEDED values:
+ -array_dataset_access_right
+       a access right (scientis, group, all)
+ -array_dataset_array_type
+       the same as in nucleotide_array_libs.array_type
+ LINKAGE variables:
+ -array_dataset_scientist_id
+       a link to the scientists table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -scientistTable_name
+          the name of the scientif (you)
+    -scientistTable_workgroup
+          the name of your group leader
+    -scientistTable_position
+          your position (PhD student, postdoc, .. )
+ -array_dataset_sample_id
+       a link to the samples table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -sampleTable_sample_lable
+          the lable of the storage tubes
+    -sampleTable_subject_id
+          the link to the subjects table
+    -sampleTable_tissue_id
+          the link to the tissues table
+ -array_dataset_array_id
+       a link to the nucleotides array
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -nucleotide_array_identifier
+          a identifier for this particular array design
+ -array_dataset_experiment_id
+       a link to the experiment table
+       If you do not know this value you should provide the following needed values
+    NEEDED values:
+    -experiment_name
+          The name for the experiment. This name has to be uniwue over all the emperiments.
+array_dataset_scientist_id;scientistTable_name;scientistTable_workgroup;scientistTable_position;array_dataset_sample_id;sampleTable_sample_lable;sampleTable_subject_id;sampleTable_tissue_id;array_dataset_access_right;array_dataset_array_id;nucleotide_array_identifier;array_dataset_experiment_id;experiment_name;array_dataset_array_type;

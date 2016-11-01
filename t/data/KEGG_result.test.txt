@@ -1,0 +1,21 @@
+#we analyzed a total of 263 genes translating in the corrected p_values 
+#0.05=1.9E-04
+#0.01=3.8E-05
+#kegg_pathway.id	matched genes	pathway_name	Gene Symbols	max_count	bad_entries	hypergeometric p value
+169	6	Maturity onset diabetes of the young	GCK HHEX HNF1A HNF1B NEUROD1 SLC2A2	24	20948	4.0E-07
+174	6	Type II diabetes mellitus	ABCC8 GCK IRS1 KCNJ11 MAPK10 SLC2A2	45	20927	1.8E-05
+121	7	Progesterone-mediated oocyte maturation	ADCY5 CCNB2 GNAI1 IGF1 MAPK10 PDE3B RPS6KA6	84	20888	7.9E-05
+151	6	Long-term depression	GNAI1 GNAO1 GNAS GNAZ IGF1 PLCB4	69	20903	2.0E-04
+190	6	Melanogenesis	ADCY5 GNAI1 GNAO1 GNAS PLCB4 TCF7L2	101	20871	1.4E-03
+84	6	Axon guidance	DPYSL2 EPHB4 GNAI1 PLXNC1 ROBO2 SEMA5A	129	20843	4.6E-03
+30	6	Cell adhesion molecules (CAMs)	ALCAM CNTN1 NFASC NRCAM NRXN1 PVRL3	131	20841	4.9E-03
+127	6	Insulin signaling pathway	G6PC2 GCK IRS1 MAPK10 PDE3B SREBF1	134	20838	5.4E-03
+135	5	Oocyte meiosis	ADCY5 CCNB2 IGF1 REC8 RPS6KA6	111	20861	1.0E-02
+95	5	Endocytosis	ADRBK2 ARAP1 DNAJC6 LDLRAP1 SH3GL2	183	20789	5.3E-02
+167	7	Pathways in cancer	CDKN2A CDKN2B CTNNA2 IGF1 MAPK10 PPARG TCF7L2	325	20647	6.3E-02
+15	5	Neuroactive ligand-receptor interaction	ADRA2A GIPR MTNR1B SSTR1 SSTR2	254	20718	1.1E-01
+78	5	MAPK signaling pathway	CACNA2D2 DUSP9 MAPK10 RASGRF1 RPS6KA6	267	20705	1.2E-01
+#subsets=plottable;2;1;6	data;4;5;1
+#index=kegg_pathway.id
+#uniques=
+#defaults=						

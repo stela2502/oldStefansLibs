@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!-- $Id: formdef_insert_into_dbTable_storage_table.pl.xml,v 1.1.2.2 2009/08/26 14:35:33 stefan_l Exp $ -->
+
+
+<settings>
+
+ <globalsettings>
+   <version>version 1</version>
+   <author>Stefan Lang</author>
+   <description>No Description available</description>
+   <target></target>
+ </globalsettings>
+ 	 <formsettings>
+  <formitem>
+        <type>text</type>
+        <name>storage_table_building</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the building the storgae is placed in" spancontent="?">building</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>storage_table_floor</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the floor the storage is located" spancontent="?">floor</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>storage_table_room</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the room of the storage" spancontent="?">room</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>storage_table_box_label</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="the lable of the box in the storage" spancontent="?">box_label</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+        <type>text</type>
+        <name>storage_table_description</name>
+        <htmltype>labels</htmltype>
+        <label spanclass="navibutton" javaonclickalert="a description of the storage (e.g. small white fridge)" spancontent="?">description</label>
+<rules>
+    <item textcontent=" " ruletype="required" authtype="client"></item>
+   </rules>
+          <attribs>
+               <item class="formtext"></item>
+          </attribs>
+</formitem>
+  <formitem>
+   <type>submit</type>
+   <name>SENDDATA</name>
+   <label>Submit</label>
+   <htmltype>labels</htmltype>
+   <datasource></datasource>
+   <fetchdata valuedata="" text=""></fetchdata>
+   <displayorder></displayorder>
+   <value type="single">1</value>
+   <attribs>
+    <item label="class" value="formtext"></item>
+   </attribs>
+   <rules>
+    <item></item>
+   </rules>
+  </formitem> </formsettings>
+</settings>

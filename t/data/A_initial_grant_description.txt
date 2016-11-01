@@ -1,0 +1,12 @@
+Hello all,
+
+this is the first grant inserted into my new database. Please use that grant untill I include the possibility to add new ones.
+But be aware, that you loose quite some information using this grant.
+
+
+!!!! WARNING !!!!
+
+All datasets inserted downstream of that grant may not be persistent in the database!!
+This grant indicates that the database is not stable yet!
+
+!!!! WARNING !!!!

@@ -1,0 +1,8 @@
+ NEEDED values:
+ -external_files_file
+       the name of the file
+ -external_files_filetype
+       the filetype (one of picture, text_document or data_file
+ -external_files_upload_time
+       the time when the file was uploaded
+external_files_file;external_files_filetype;external_files_upload_time;
